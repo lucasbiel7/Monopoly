@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
     @Column(unique = true)
     private String login;
     private String senha;
-    private boolean bitDel;
+    private boolean del;
 
     public String getId() {
         return id;
@@ -63,12 +63,12 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    public boolean isBitDel() {
-        return bitDel;
+    public boolean isDel() {
+        return del;
     }
 
-    public void setBitDel(boolean bitDel) {
-        this.bitDel = bitDel;
+    public void setDel(boolean del) {
+        this.del = del;
     }
 
     @Override

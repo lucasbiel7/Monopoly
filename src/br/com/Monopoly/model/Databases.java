@@ -10,17 +10,19 @@ package br.com.Monopoly.model;
  * @author OCTI-Lucas
  */
 public enum Databases {
-
-    DBLucas("root", "OC2016", "monopoly");
+    DBSamuel("root", "sara", "monopoly", "localhost"),
+    DBLucas("root", "OC2016", "monopoly", "localhost");
 
     private String usuario;
     private String senha;
     private String banco;
+    private String endereco;
 
-    private Databases(String usuario, String senha, String banco) {
+    private Databases(String usuario, String senha, String banco, String endereco) {
         this.usuario = usuario;
         this.senha = senha;
         this.banco = banco;
+        this.endereco = endereco;
     }
 
     public String getUsuario() {
@@ -47,4 +49,11 @@ public enum Databases {
         this.banco = banco;
     }
 
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 }
