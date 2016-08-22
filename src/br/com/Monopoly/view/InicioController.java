@@ -5,6 +5,9 @@
  */
 package br.com.Monopoly.view;
 
+import br.com.Monopoly.control.Alerta;
+import br.com.Monopoly.control.dao.UsuarioDAO;
+import br.com.Monopoly.model.entity.Usuario;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -45,7 +48,13 @@ public class InicioController implements Initializable {
     
     @FXML
     void btSubmitEvent(ActionEvent event) {
+        Usuario usuario = new UsuarioDAO().login(tfLogin.getText(), pfSenha.getText());
         
+        if (usuario != null) {
+            
+        }else{
+            Alerta.criarAlert(Alerta.tipoAlerta.ERROLOGIN);
+        }
     }
 
 }

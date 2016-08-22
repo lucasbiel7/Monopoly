@@ -7,6 +7,7 @@ package br.com.Monopoly.control.dao;
 
 import br.com.Monopoly.model.entity.Usuario;
 import br.com.Monopoly.model.GenericaDAO;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -14,4 +15,9 @@ import br.com.Monopoly.model.GenericaDAO;
  */
 public class UsuarioDAO extends GenericaDAO<Usuario> {
 
+    public Usuario login(String login, String senha){
+        entity = (Usuario) criteria.add(Restrictions.eq("login", login)).add(Restrictions.eq("senha", senha)).uniqueResult();
+        closeSession();
+        return entity;
+    }
 }

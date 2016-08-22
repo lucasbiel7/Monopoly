@@ -5,3 +5,15 @@
 .mainFxmlClass {
 
 }
+
+#btSubmit{
+    -fx-background-color: none;
+    -fx-font-size: 16px;
+    
+}
+
+#btSubmit:hover{
+    -fx-cursor: hand;
+    -fx-font-size: 19px;
+    
+}

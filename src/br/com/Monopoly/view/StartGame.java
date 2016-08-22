@@ -5,6 +5,7 @@
  */
 package br.com.Monopoly.view;
 
+import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.dao.UsuarioDAO;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -17,7 +18,7 @@ public class StartGame extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        new UsuarioDAO().buscarTodos();
+        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("Inicio"), "Monopoly Deal", GerenciadorDeJanelas.Tipo.EXIT_ON_CLOSE,GerenciadorDeJanelas.Tipo.UNRESIZABLE).show();
     }
 
     /**
