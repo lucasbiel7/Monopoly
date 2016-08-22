@@ -12,11 +12,17 @@ import java.util.List;
  *
  * @author samuel
  */
-public interface AcoesBD<Entidade> {
+public interface AcoesBD<Entidade extends Serializable> {
+
     public void salvar(Entidade e);
+
     public void editar(Entidade e);
+
     public Entidade buscarPorID(Serializable id);
-    public List<Entidade> buscarPorParametro(String campo,Object valor);
+
+    public List<Entidade> buscarPorParametro(String campo, Object valor);
+
     public List<Entidade> buscarTodos();
+
     public void deletar(Entidade e);
 }
