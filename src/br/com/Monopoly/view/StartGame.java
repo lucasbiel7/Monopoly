@@ -5,12 +5,8 @@
  */
 package br.com.Monopoly.view;
 
+import br.com.Monopoly.control.dao.UsuarioDAO;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -18,10 +14,10 @@ import javafx.stage.Stage;
  * @author OCTI-Lucas
  */
 public class StartGame extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) {
-        
+        new UsuarioDAO().buscarTodos();
     }
 
     /**
@@ -30,5 +26,5 @@ public class StartGame extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
