@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.Monopoly.view.InicioController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="499.0" prefWidth="332.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.Monopoly.view.InicioController">
     <stylesheets>
-        <URL value="@estilo.css"/>
+        <URL value="@estilo.css" />
     </stylesheets>
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="35.0" layoutY="188.0" prefHeight="25.0" prefWidth="263.0" text="Login " textAlignment="CENTER" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfLogin" layoutX="35.0" layoutY="225.0" prefHeight="25.0" prefWidth="263.0" promptText="User name" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="35.0" layoutY="266.0" prefHeight="25.0" prefWidth="263.0" text="Senha" textAlignment="CENTER" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="pfSenha" layoutX="35.0" layoutY="300.0" prefHeight="30.0" prefWidth="263.0" promptText="Password user" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" />
+      <Button fx:id="btSubmit" layoutX="80.0" layoutY="371.0" mnemonicParsing="false" onAction="#btSubmitEvent" prefHeight="25.0" prefWidth="179.0" text="Entrar" />
+      <ImageView fx:id="ivLogo" fitHeight="159.0" fitWidth="310.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+   </children>
 </AnchorPane>

@@ -7,8 +7,13 @@ package br.com.Monopoly.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -20,13 +25,27 @@ public class InicioController implements Initializable {
 
     @FXML
     private AnchorPane apPrincipal;
+    
+    @FXML
+    private TextField tfLogin;
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private PasswordField pfSenha;
+
+    @FXML
+    private Button btSubmit;
+
+    @FXML
+    private ImageView ivLogo;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+    
+    @FXML
+    void btSubmitEvent(ActionEvent event) {
+        
     }
 
 }
