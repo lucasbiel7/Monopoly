@@ -5,10 +5,13 @@
  */
 package br.com.Monopoly.model;
 
+import org.hibernate.Session;
+
 /**
  *
  * @author OCTI-Lucas
  */
 public class GenericaDAO {
-    
+
+    protected Session sessao;
 }
