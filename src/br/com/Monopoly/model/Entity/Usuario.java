@@ -7,19 +7,23 @@ package br.com.Monopoly.model.Entity;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
  * @author samuel
  */
 @Entity
-public class Usuario implements Serializable{
-    
+public class Usuario implements Serializable {
+
     @Id
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(generator = "uuid")
+    @Column(columnDefinition = "varchar(64)")
     private String id;
     private String nome;
     @Column(unique = true)
@@ -96,7 +100,5 @@ public class Usuario implements Serializable{
     public String toString() {
         return nome;
     }
-    
-    
-    
+
 }
