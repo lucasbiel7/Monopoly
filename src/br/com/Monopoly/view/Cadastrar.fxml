@@ -14,7 +14,7 @@
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="54.0" prefWidth="354.0" text="Cadastrar Jogador">
+      <Label fx:id="lbTitulo" layoutX="14.0" layoutY="14.0" prefHeight="54.0" prefWidth="354.0" text="Cadastrar Jogador">
          <font>
             <Font size="28.0" />
          </font>
@@ -43,8 +43,9 @@
          </font>
       </Label>
       <Circle fx:id="ccFoto" fill="#1f93ff00" layoutX="89.0" layoutY="365.0" radius="71.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="btAddFoto" layoutX="191.0" layoutY="353.0" mnemonicParsing="false" text="Adicionar Foto" />
-      <Button fx:id="btSalvar" layoutX="406.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Salvar" />
-      <Button fx:id="btCancelar" layoutX="315.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Cancelar" />
+      <Button fx:id="btAddFoto" layoutX="179.0" layoutY="323.0" mnemonicParsing="false" onAction="#btAddFotoEvent" text="Adicionar Foto" AnchorPane.leftAnchor="179.0" />
+      <Button fx:id="btSalvar" layoutX="406.0" layoutY="411.0" mnemonicParsing="false" onAction="#btSalvarEvent" prefHeight="25.0" prefWidth="84.0" text="Salvar" />
+      <Button fx:id="btCancelar" layoutX="315.0" layoutY="411.0" mnemonicParsing="false" onAction="#btCancelarEvent" prefHeight="25.0" prefWidth="84.0" text="Cancelar" />
+      <Button fx:id="btRemoveFoto" layoutX="179.0" layoutY="361.0" mnemonicParsing="false" onAction="#btRemoveFotoEvent" prefHeight="25.0" prefWidth="94.0" text="Remover Foto" AnchorPane.leftAnchor="179.0" />
    </children>
 </AnchorPane>
