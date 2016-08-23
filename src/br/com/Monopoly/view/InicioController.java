@@ -28,7 +28,7 @@ public class InicioController implements Initializable {
 
     @FXML
     private AnchorPane apPrincipal;
-    
+
     @FXML
     private TextField tfLogin;
 
@@ -45,15 +45,14 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+
     @FXML
     void btSubmitEvent(ActionEvent event) {
         Usuario usuario = new UsuarioDAO().login(tfLogin.getText(), pfSenha.getText());
-        
         if (usuario != null) {
-            
-        }else{
-            Alerta.criarAlert(Alerta.tipoAlerta.ERROLOGIN);
+
+        } else {
+            Alerta.criarAlert(Alerta.tipoAlerta.ERROLOGIN).show();
         }
     }
 

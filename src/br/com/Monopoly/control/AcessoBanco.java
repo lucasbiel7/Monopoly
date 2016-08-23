@@ -28,7 +28,6 @@ public class AcessoBanco {
     static {
         Configuration configuration = new Configuration().configure();
         setarConfiguracoes(configuration);
-        System.out.println(configuration.getProperties());
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.configure().buildSessionFactory(serviceRegistry);
     }
