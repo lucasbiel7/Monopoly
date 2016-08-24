@@ -5,6 +5,7 @@
  */
 package br.com.Monopoly.control;
 
+import br.com.Monopoly.model.Funcionalidade;
 import br.com.Monopoly.model.entity.Usuario;
 
 /**
@@ -14,4 +15,8 @@ import br.com.Monopoly.model.entity.Usuario;
 public class Sessao {
 
     public static Usuario usuario;
+
+    public static boolean acesso(Funcionalidade funcionalidade) {
+        return false;
+    }
 }
