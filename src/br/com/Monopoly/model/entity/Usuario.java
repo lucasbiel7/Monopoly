@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -30,6 +31,16 @@ public class Usuario implements Serializable {
     private String login;
     private String senha;
     private boolean del;
+    @Lob
+    private byte[] foto;
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
 
     public String getId() {
         return id;

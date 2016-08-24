@@ -25,13 +25,11 @@ public class Sessao {
     public static boolean verificarPermissao(Funcionalidade func) {
         if (usuario != null) {
             Permissao permissao = new PermissaoDAO().buscarPorID(new Permissao.PermissaoID(func, usuario));
-//meu deus do ceu
             if (permissao != null) {
                 return true;
             } else {
                 return false;
             }
-            
         } else {
             return false;
         }

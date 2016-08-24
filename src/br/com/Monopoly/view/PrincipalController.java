@@ -46,7 +46,7 @@ public class PrincipalController implements Initializable {
 
     @FXML
     public void btMinimizarActionEvent(ActionEvent actionEvent) {
-        ((Stage) apPrincipal.getScene().getWindow()).toBack();
+        ((Stage) apPrincipal.getScene().getWindow()).setIconified(true);
     }
 
 }
