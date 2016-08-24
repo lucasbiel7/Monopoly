@@ -50,7 +50,7 @@ public class InicioController implements Initializable {
     void btSubmitEvent(ActionEvent event) {
         Usuario usuario = new UsuarioDAO().login(tfLogin.getText(), pfSenha.getText());
         if (usuario != null) {
-
+            System.out.println("Conectado");
         } else {
             Alerta.criarAlert(Alerta.tipoAlerta.ERROLOGIN).show();
         }

@@ -18,6 +18,7 @@ public class StartGame extends Application {
     @Override
     public void start(Stage primaryStage) {
         GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("Inicio"), "Monopoly Deal", GerenciadorDeJanelas.Tipo.EXIT_ON_CLOSE,GerenciadorDeJanelas.Tipo.UNRESIZABLE).show();
+//        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("Cadastrar"), "Monopoly Deal", GerenciadorDeJanelas.Tipo.EXIT_ON_CLOSE,GerenciadorDeJanelas.Tipo.UNRESIZABLE).show();
     }
     /**
      * @param args the command line arguments

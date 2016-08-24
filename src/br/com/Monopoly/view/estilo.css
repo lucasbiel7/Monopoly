@@ -17,3 +17,9 @@
     -fx-font-size: 19px;
     
 }
+
+#apPermissoes{
+    -fx-border-style: solid;
+    -fx-border-color: #000000;
+    -fx-border-radius: 20px;
+}

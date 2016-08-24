@@ -16,7 +16,7 @@ import org.hibernate.criterion.Restrictions;
 public class UsuarioDAO extends GenericaDAO<Usuario> {
 
     public Usuario login(String login, String senha){
-        entity = (Usuario) criteria.add(Restrictions.eq("login", login)).add(Restrictions.eq("senha", senha)).uniqueResult();
+        entity = (Usuario) criteria.add(Restrictions.eq("login", login)).add(Restrictions.eq("senha", senha)).add(Restrictions.eq("del", false)).uniqueResult();
         closeSession();
         return entity;
     }

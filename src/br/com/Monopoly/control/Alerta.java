@@ -18,7 +18,7 @@ public class Alerta {
         String titulo = "Ocorreu um erro !!!";
         String mensagem = "Vish :( algo errado";
         AlertType tipo = Alert.AlertType.INFORMATION;
-        
+
         switch (ta) {
             case CAMPOVAZIO:
                 titulo = "Preencha todos os campos.";
@@ -34,18 +34,22 @@ public class Alerta {
                 mensagem = "Login e/ou Senha invalidos, tente novamente";
                 tipo = AlertType.ERROR;
                 break;
+            case CONCLUIDO:
+                titulo = "Concluido com sucesso.";
+                mensagem = "Concluido com sucesso.";
+                break;
         }
         Alert alert = new Alert(tipo, mensagem);
         alert.setTitle(titulo);
-        
+
         return alert;
-        
+
     }
 
     public enum tipoAlerta {
         ERROLOGIN(),
         CAMPOVAZIO(),
-        CONFIRMACAO();
-
+        CONFIRMACAO(),
+        CONCLUIDO();
     }
 }

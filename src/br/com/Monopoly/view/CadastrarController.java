@@ -5,6 +5,9 @@
  */
 package br.com.Monopoly.view;
 
+import br.com.Monopoly.control.Alerta;
+import br.com.Monopoly.control.dao.UsuarioDAO;
+import br.com.Monopoly.model.entity.Usuario;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
@@ -54,9 +58,26 @@ public class CadastrarController implements Initializable {
     @FXML
     private Button btRemoveFoto;
     
+    @FXML
+    private AnchorPane apPermissoes;
+
+    @FXML
+    private RadioButton rbCadastrar;
+
+    @FXML
+    private RadioButton rbCriarSala;
+
+    @FXML
+    private RadioButton rbBatePapo;
+
+    @FXML
+    private RadioButton rbDeletar;
+    
+    private Usuario usuario;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        usuario = new Usuario();
     }
 
     @FXML
@@ -76,7 +97,15 @@ public class CadastrarController implements Initializable {
 
     @FXML
     void btSalvarEvent(ActionEvent event) {
-
+        usuario.setNome(tfNome.getText());
+        usuario.setLogin(tfLogin.getText());
+        usuario.setSenha(pfSenha.getText());
+        new UsuarioDAO().salvar(usuario);
+        Alerta.criarAlert(Alerta.tipoAlerta.CONCLUIDO).show();
     }
     
+    @FXML
+    void rbEvent(ActionEvent event) {
+
+    }
 }
