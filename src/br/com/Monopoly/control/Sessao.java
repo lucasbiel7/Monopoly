@@ -23,7 +23,7 @@ public class Sessao {
             Permissao permissao = new PermissaoDAO().buscarPorID(new Permissao.PermissaoID(func, usuario));
             System.out.println(permissao);
             if (permissao != null) {
-                return true;
+                return !permissao.isDel();
             } else {
                 return false;
             }
