@@ -11,6 +11,7 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 
 /**
@@ -18,11 +19,12 @@ import javax.persistence.ManyToOne;
  * @author OCTI-Lucas
  */
 @Entity
-public class Permissao {
+public class Permissao implements Serializable {
 
     @Embeddable
     public static class PermissaoID implements Serializable {
 
+        @Enumerated
         private Funcionalidade funcionalidade;
         @ManyToOne
         private Usuario usuario;

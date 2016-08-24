@@ -6,6 +6,7 @@
 package br.com.Monopoly.view;
 
 import br.com.Monopoly.control.Alerta;
+import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.dao.UsuarioDAO;
 import br.com.Monopoly.model.entity.Usuario;
 import java.net.URL;
@@ -18,6 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -50,7 +52,8 @@ public class InicioController implements Initializable {
     void btSubmitEvent(ActionEvent event) {
         Usuario usuario = new UsuarioDAO().login(tfLogin.getText(), pfSenha.getText());
         if (usuario != null) {
-            System.out.println("Conectado");
+            ((Stage) apPrincipal.getScene().getWindow()).close();
+            GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("Principal"), "Tela principal", GerenciadorDeJanelas.Tipo.MAXIMIZED, GerenciadorDeJanelas.Tipo.UNDECORATED).show();
         } else {
             Alerta.criarAlert(Alerta.tipoAlerta.ERROLOGIN).show();
         }

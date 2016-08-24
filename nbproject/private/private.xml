@@ -3,22 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/CadastrarController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/Cadastrar.fxml</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/PrincipalController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/AcoesBD.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/GenericaDAO.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/dao/UsuarioDAO.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/Databases.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/StartGame.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/estilo.css</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/hibernate.cfg.xml</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/entity/Usuario.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/Alerta.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/AcessoBanco.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/InicioController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/Funcionalidade.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/entity/Permissao.java</file>
+            <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/hibernate.cfg.xml</file>
+            <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/StartGame.java</file>
         </group>
     </open-files>
 </project-private>

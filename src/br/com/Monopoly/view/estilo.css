@@ -6,16 +6,18 @@
 
 }
 
+
+/*Caracteristicas especificas*/
 #btSubmit{
     -fx-background-color: none;
     -fx-font-size: 16px;
-    
+
 }
 
 #btSubmit:hover{
     -fx-cursor: hand;
     -fx-font-size: 19px;
-    
+
 }
 
 #apPermissoes{
@@ -23,3 +25,18 @@
     -fx-border-color: #000000;
     -fx-border-radius: 20px;
 }
+
+
+/*Title Windows style*/
+.janela-botoes{
+    -fx-background-color:none;
+    -fx-padding: 0;
+}
+.janela-botoes:hover{
+    -fx-background-color: darkgrey;
+}
+#fechar:hover{
+    -fx-background-color: red;
+}
+
+

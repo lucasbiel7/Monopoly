@@ -26,7 +26,7 @@
          </font>
       </Label>
       <PasswordField fx:id="pfSenha" layoutX="35.0" layoutY="300.0" prefHeight="30.0" prefWidth="263.0" promptText="Password user" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" />
-      <Button fx:id="btSubmit" layoutX="80.0" layoutY="371.0" mnemonicParsing="false" onAction="#btSubmitEvent" prefHeight="25.0" prefWidth="179.0" text="Entrar" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" />
+      <Button fx:id="btSubmit" defaultButton="true" layoutX="80.0" layoutY="371.0" mnemonicParsing="false" onAction="#btSubmitEvent" prefHeight="25.0" prefWidth="179.0" text="Entrar" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" />
       <ImageView fx:id="ivLogo" fitHeight="159.0" fitWidth="310.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>
