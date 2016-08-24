@@ -10,8 +10,25 @@ package br.com.Monopoly.model;
  * @author OCTI-Lucas
  */
 public enum Funcionalidade {
-    CADASTRAR,
-    CRIARSALA,
-    APAGAR,
-    BATEPAPO;
+    CADASTRAR("Cadastrar"),
+    CRIARSALA("Criar Sala"),
+    APAGAR("Apagar"),
+    BATEPAPO("Bate-Papo");
+
+    private String nome;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    private Funcionalidade() {
+    }
+
+    private Funcionalidade(String nome) {
+        this.nome = nome;
+    }
 }

@@ -93,6 +93,16 @@ public class Permissao implements Serializable {
         return id;
     }
 
+    public Permissao() {
+    }
+
+    public Permissao(PermissaoID id, boolean ativado, boolean del) {
+        this.id = id;
+        this.ativado = ativado;
+        this.del = del;
+    }
+    
+    
     public void setId(PermissaoID id) {
         this.id = id;
     }
