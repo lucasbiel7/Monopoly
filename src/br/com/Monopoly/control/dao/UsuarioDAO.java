@@ -20,4 +20,6 @@ public class UsuarioDAO extends GenericaDAO<Usuario> {
         closeSession();
         return entity;
     }
+    
+    
 }
