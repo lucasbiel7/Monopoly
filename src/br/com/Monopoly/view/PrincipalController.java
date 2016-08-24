@@ -5,11 +5,13 @@
  */
 package br.com.Monopoly.view;
 
+import br.com.Monopoly.control.GerenciadorDeJanelas;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -24,6 +26,8 @@ public class PrincipalController implements Initializable {
     @FXML
     private AnchorPane apPrincipal;
     @FXML
+    private ScrollPane spContainer;
+    @FXML
     private ImageView ivIcon;
 
     /**
@@ -31,12 +35,7 @@ public class PrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-    }
-
-    @FXML
-    public void btMaximizarActionEvent(ActionEvent actionEvent) {
-
+        GerenciadorDeJanelas.inserirPainel(spContainer, GerenciadorDeJanelas.carregarComponente("Inicio"));
     }
 
     @FXML

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -32,15 +33,6 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#btMaximizarActionEvent" prefHeight="25.0" prefWidth="28.0" styleClass="janela-botoes">
-                     <graphic>
-                        <ImageView fitHeight="15.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@image/maximize.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                   <Button id="fechar" mnemonicParsing="false" onAction="#btFecharActionEvent" prefHeight="25.0" prefWidth="28.0" styleClass="janela-botoes">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -63,5 +55,6 @@
             </MenuBar>
          </children>
       </VBox>
+      <ScrollPane fx:id="spContainer" layoutX="8.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.5" />
    </children>
 </AnchorPane>

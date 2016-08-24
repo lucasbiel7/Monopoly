@@ -18,13 +18,10 @@ public class Sessao {
 
     public static Usuario usuario;
 
-    public static boolean acesso(Funcionalidade funcionalidade) {
-        return false;
-    }
-
     public static boolean verificarPermissao(Funcionalidade func) {
         if (usuario != null) {
             Permissao permissao = new PermissaoDAO().buscarPorID(new Permissao.PermissaoID(func, usuario));
+            System.out.println(permissao);
             if (permissao != null) {
                 return true;
             } else {

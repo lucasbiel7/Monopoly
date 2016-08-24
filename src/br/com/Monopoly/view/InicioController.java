@@ -5,21 +5,14 @@
  */
 package br.com.Monopoly.view;
 
-import br.com.Monopoly.control.Alerta;
-import br.com.Monopoly.control.GerenciadorDeJanelas;
-import br.com.Monopoly.control.dao.UsuarioDAO;
-import br.com.Monopoly.model.entity.Usuario;
+import br.com.Monopoly.control.Sessao;
+import br.com.Monopoly.model.Funcionalidade;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -30,33 +23,15 @@ public class InicioController implements Initializable {
 
     @FXML
     private AnchorPane apPrincipal;
-
     @FXML
-    private TextField tfLogin;
+    private Button btCriarSala;
 
-    @FXML
-    private PasswordField pfSenha;
-
-    @FXML
-    private Button btSubmit;
-
-    @FXML
-    private ImageView ivLogo;
-
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        System.out.println("teste");
+        btCriarSala.setVisible(Sessao.verificarPermissao(Funcionalidade.CRIARSALA));
     }
-
-    @FXML
-    void btSubmitEvent(ActionEvent event) {
-        Usuario usuario = new UsuarioDAO().login(tfLogin.getText(), pfSenha.getText());
-        if (usuario != null) {
-            ((Stage) apPrincipal.getScene().getWindow()).close();
-            GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("Principal"), "Tela principal", GerenciadorDeJanelas.Tipo.MAXIMIZED, GerenciadorDeJanelas.Tipo.UNDECORATED).show();
-        } else {
-            Alerta.criarAlert(Alerta.tipoAlerta.ERROLOGIN).show();
-        }
-    }
-
 }
