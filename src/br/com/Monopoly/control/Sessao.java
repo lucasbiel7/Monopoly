@@ -9,7 +9,6 @@ import br.com.Monopoly.control.dao.PermissaoDAO;
 import br.com.Monopoly.model.Funcionalidade;
 import br.com.Monopoly.model.entity.Permissao;
 import br.com.Monopoly.model.entity.Usuario;
-import java.util.List;
 
 /**
  *
@@ -26,7 +25,7 @@ public class Sessao {
     public static boolean verificarPermissao(Funcionalidade func) {
         if (usuario != null) {
             Permissao permissao = new PermissaoDAO().buscarPorID(new Permissao.PermissaoID(func, usuario));
-
+//meu deus do ceu
             if (permissao != null) {
                 return true;
             } else {
