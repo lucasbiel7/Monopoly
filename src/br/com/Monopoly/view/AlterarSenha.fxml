@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="282.0" prefWidth="628.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.Monopoly.view.AlterarSenhaController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="282.0" prefWidth="628.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.Monopoly.view.AlterarSenhaController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
@@ -22,19 +22,19 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <PasswordField fx:id="pfSenhaAtual" layoutX="107.0" layoutY="61.0" prefHeight="25.0" prefWidth="457.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="61.0" />
+      <PasswordField fx:id="pfSenhaAtual" accessibleText="Campo Senha Atual" layoutX="107.0" layoutY="61.0" prefHeight="25.0" prefWidth="457.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="61.0" />
       <Label layoutX="14.0" layoutY="109.0" text="Nova Senha">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <PasswordField fx:id="pfNovaSenha1" layoutX="97.0" layoutY="109.0" prefHeight="25.0" prefWidth="457.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="109.0" />
+      <PasswordField fx:id="pfNovaSenha1" accessibleText="Campo nova senha" layoutX="97.0" layoutY="109.0" prefHeight="25.0" prefWidth="457.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="109.0" />
       <Label layoutX="14.0" layoutY="160.0" text="Confirmação">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <PasswordField fx:id="pfNovaSenha2" layoutX="120.0" layoutY="160.0" prefHeight="25.0" prefWidth="457.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="160.0" />
+      <PasswordField fx:id="pfNovaSenha2" accessibleText="Campo confirmação" layoutX="120.0" layoutY="160.0" prefHeight="25.0" prefWidth="457.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="160.0" />
       <Button fx:id="btSalvar" layoutX="562.0" layoutY="243.0" mnemonicParsing="false" onAction="#btSalvarEvent" text="Salvar Alteração" AnchorPane.leftAnchor="562.0" AnchorPane.topAnchor="243.0" />
       <Button fx:id="btCancelar" layoutX="441.0" layoutY="243.0" mnemonicParsing="false" onAction="#btCancelarEvent" prefHeight="25.0" prefWidth="101.0" text="Cancelar" AnchorPane.leftAnchor="441.0" AnchorPane.topAnchor="243.0" />
    </children>

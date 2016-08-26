@@ -169,7 +169,7 @@ public class GerenciarPerfilController implements Initializable {
                     vbCampos.getChildren().remove(lbSenha);
                     Button btSenha = new Button("Alterar Senha");
                     btSenha.setOnAction((event) -> {
-                        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("AlterarSenha"), "Alterar Senha", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNDECORATED).show();
+                        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("AlterarSenha",usuario), "Alterar Senha", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNDECORATED).show();
                     });
                     vbCampos.getChildren().add(btSenha);
                     lbTitulo.setText("Meu Perfil");

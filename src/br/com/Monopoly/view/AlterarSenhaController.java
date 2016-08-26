@@ -74,15 +74,16 @@ public class AlterarSenhaController implements Initializable {
     @FXML
     void btSalvarEvent(ActionEvent event) {
         if (Validador.required(pfSenhaAtual) && Validador.required(pfNovaSenha1) && Validador.required(pfNovaSenha2)) {
-            if (pfNovaSenha1.getText().equals(pfNovaSenha2.getText()) && usuario.getSenha().equals(pfSenhaAtual.getText())) {
+            if (pfNovaSenha1.getText().equals(pfNovaSenha2.getText()) && usuario.getSenha().equals(Seguranca.criptografar(pfSenhaAtual.getText()))) {
                 usuario.setSenha(Seguranca.criptografar(pfNovaSenha1.getText()));
-                new UsuarioDAO().salvar(usuario);
-                Alerta.criarAlert(Alerta.tipoAlerta.CONCLUIDO);
+                new UsuarioDAO().editar(usuario);
+                Alerta.criarAlert(Alerta.tipoAlerta.CONCLUIDO).show();
                 me.close();
             } else {
                 Alert erro = Alerta.criarAlert(Alerta.tipoAlerta.ERROLOGIN);
                 erro.setHeaderText("Nova senha invalida.");
                 erro.setContentText("Erro na confirmação da senha. Digite novamente.");
+                erro.show();
                 pfNovaSenha2.setText("");
                 pfNovaSenha2.requestFocus();
             }
