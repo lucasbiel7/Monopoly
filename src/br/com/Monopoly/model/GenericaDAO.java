@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -81,6 +82,8 @@ public class GenericaDAO<Entity extends Serializable> implements AcoesBD<Entity>
 
     @Override
     public List<Entity> buscarPorParametro(String campo, Object valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        entitys = criteria.add(Restrictions.eq(campo, valor)).list();
+        closeSession();
+        return entitys;
     }
 }
