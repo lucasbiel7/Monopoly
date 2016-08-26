@@ -7,6 +7,7 @@ package br.com.Monopoly.view;
 
 import br.com.Monopoly.control.Alerta;
 import br.com.Monopoly.control.GerenciadorDeJanelas;
+import br.com.Monopoly.control.Seguranca;
 import br.com.Monopoly.control.dao.UsuarioDAO;
 import br.com.Monopoly.model.entity.Usuario;
 import java.net.URL;
@@ -50,7 +51,7 @@ public class LoginController implements Initializable {
 
     @FXML
     void btSubmitEvent(ActionEvent event) {
-        Usuario usuario = new UsuarioDAO().login(tfLogin.getText(), pfSenha.getText());
+        Usuario usuario = new UsuarioDAO().login(tfLogin.getText(), Seguranca.criptografar(pfSenha.getText()));
         if (usuario != null) {
             ((Stage) apPrincipal.getScene().getWindow()).close();
             GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("Principal"), "Tela principal", GerenciadorDeJanelas.Tipo.MAXIMIZED, GerenciadorDeJanelas.Tipo.UNDECORATED).show();

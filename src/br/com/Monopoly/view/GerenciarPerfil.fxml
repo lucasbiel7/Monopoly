@@ -29,19 +29,19 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="tfNome" prefHeight="25.0" prefWidth="443.0" />
+            <TextField fx:id="tfNome" accessibleText="Campo nome" prefHeight="25.0" prefWidth="443.0" />
             <Label prefHeight="26.0" prefWidth="143.0" text="Login:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="tfLogin" prefHeight="25.0" prefWidth="443.0" />
+            <TextField fx:id="tfLogin" accessibleText="Campo senha" prefHeight="25.0" prefWidth="443.0" />
             <Label fx:id="lbSenha" prefHeight="26.0" prefWidth="143.0" text="Senha:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <PasswordField fx:id="pfSenha" prefHeight="25.0" prefWidth="443.0" />
+            <PasswordField fx:id="pfSenha" accessibleText="Campo senha" prefHeight="25.0" prefWidth="443.0" />
          </children>
       </VBox>
       <Label layoutX="17.0" layoutY="289.0" prefHeight="26.0" prefWidth="143.0" text="Foto:" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="289.0">

@@ -7,6 +7,7 @@ package br.com.Monopoly.view;
 
 import br.com.Monopoly.control.Alerta;
 import br.com.Monopoly.control.GerenciadorDeJanelas;
+import br.com.Monopoly.control.Seguranca;
 import br.com.Monopoly.control.Validador;
 import br.com.Monopoly.control.dao.PermissaoDAO;
 import br.com.Monopoly.control.dao.UsuarioDAO;
@@ -285,7 +286,7 @@ public class GerenciarPerfilController implements Initializable {
                 /**
                  * Inseri a entrada do usuario de senha no objeto *
                  */
-                usuario.setSenha(pfSenha.getText());
+                usuario.setSenha(Seguranca.criptografar(pfSenha.getText()));
             }
             if (apPrincipal.getUserData() == null) {
                 /**
