@@ -52,6 +52,6 @@ public class PrincipalController implements Initializable {
 
     @FXML
     public void miPerfilActionEvent(ActionEvent actionEvent) {
-        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("GerenciarPerfil", Sessao.usuario), "Perfil - Monopoly Deal", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNRESIZABLE).showAndWait();
+        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("GerenciarPerfil", Sessao.usuario.get()), "Perfil - Monopoly Deal", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNRESIZABLE).showAndWait();
     }
 }

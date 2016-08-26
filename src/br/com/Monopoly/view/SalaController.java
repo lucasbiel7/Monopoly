@@ -78,7 +78,7 @@ public class SalaController implements Initializable {
 
     @FXML
     public void btFecharSalaActionEvent(ActionEvent actionEvent) {
-        Jogador jogador = new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario, sala));
+        Jogador jogador = new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.getValue(), sala));
         new JogadorDAO().deletar(jogador);
         if (new JogadorDAO().pegarPorSala(sala).isEmpty()) {
 

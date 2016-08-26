@@ -21,6 +21,9 @@ public class GerenciadorDeImagem {
     }
 
     public static Image carregarImage(byte[] image) {
+        if (image == null) {
+            return null;
+        }
         return new Image(new ByteArrayInputStream(image));
     }
 

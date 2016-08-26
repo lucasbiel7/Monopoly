@@ -170,7 +170,7 @@ public class GerenciarPerfilController implements Initializable {
                     vbCampos.getChildren().remove(lbSenha);
                     Button btSenha = new Button("Alterar Senha");
                     btSenha.setOnAction((event) -> {
-                        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("AlterarSenha",usuario), "Alterar Senha", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNDECORATED).show();
+                        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("AlterarSenha", usuario), "Alterar Senha", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNDECORATED).show();
                     });
                     vbCampos.getChildren().add(btSenha);
                     lbTitulo.setText("Meu Perfil");
@@ -241,7 +241,7 @@ public class GerenciarPerfilController implements Initializable {
          * Caso o botão seja pressionado a tela é fechada. *
          */
         if (apPrincipal.getUserData() != null) {
-            Sessao.usuario = new UsuarioDAO().buscarPorID(usuario.getId());
+            Sessao.usuario.set(new UsuarioDAO().buscarPorID(usuario.getId()));
         }
         ((Stage) apPrincipal.getScene().getWindow()).close();
     }
@@ -316,6 +316,10 @@ public class GerenciarPerfilController implements Initializable {
                 }
             } else {
                 new UsuarioDAO().editar(usuario);
+                if (usuario.equals(Sessao.usuario.get())) {
+                    Sessao.usuario.set(null);
+                    Sessao.usuario.set(usuario);
+                }
                 if (!permissoes.isEmpty()) {
 
                     for (Funcionalidade funcionadadesSelecionada : permissoes) {

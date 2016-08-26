@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
@@ -43,7 +42,7 @@ public class PainelAmigosController implements Initializable {
         tiAmigos = new TreeItem("Amigos");
         tiPendentes = new TreeItem("Pendencias de Amizade");
         tvAmigos.setRoot(new TreeItem("Lista de Amizades"));
-        List<Amigos> meusAmigos = new AmigosDAO().buscarAmizades(Sessao.usuario);
+        List<Amigos> meusAmigos = new AmigosDAO().buscarAmizades(Sessao.usuario.get());
         int amigos = 0;
         int pendentes = 0;
         for (Amigos meuAmigo : meusAmigos) {

@@ -59,7 +59,7 @@ public class InicioController implements Initializable {
         sala.setJogando(false);
         new SalaDAO().salvar(sala);
         Jogador jogador = new Jogador();
-        jogador.setId(new Jogador.JogadorID(Sessao.usuario, sala));
+        jogador.setId(new Jogador.JogadorID(Sessao.usuario.get(), sala));
         jogador.setCriador(true);
         jogador.setNumero(0);
         new JogadorDAO().salvar(jogador);

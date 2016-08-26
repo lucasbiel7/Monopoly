@@ -6,10 +6,11 @@
 package br.com.Monopoly.view;
 
 import br.com.Monopoly.control.Sessao;
+import br.com.Monopoly.model.entity.Usuario;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -46,12 +47,22 @@ public class PainelPerfilController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lbNome.setText(Sessao.usuario.getNome());
-        
-        if(Sessao.usuario.getFoto() != null){
-            ciFoto.setFill(new ImagePattern(new Image(new ByteArrayInputStream(Sessao.usuario.getFoto()))));
+        lbNome.setText(Sessao.usuario.get().getNome());
+
+        if (Sessao.usuario.get().getFoto() != null) {
+            ciFoto.setFill(new ImagePattern(new Image(new ByteArrayInputStream(Sessao.usuario.get().getFoto()))));
         }
-        
+
+        Sessao.usuario.addListener((ObservableValue<? extends Usuario> observable, Usuario oldValue, Usuario newValue) -> {
+            if (newValue != null) {
+                if (newValue.getFoto() != null) {
+                    ciFoto.setFill(new ImagePattern(new Image(new ByteArrayInputStream(Sessao.usuario.get().getFoto()))));
+                } else {
+                    ciFoto.setFill(null);
+                }
+            }
+        });
+
     }
 
 }

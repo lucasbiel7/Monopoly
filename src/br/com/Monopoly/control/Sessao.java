@@ -9,6 +9,7 @@ import br.com.Monopoly.control.dao.PermissaoDAO;
 import br.com.Monopoly.model.Funcionalidade;
 import br.com.Monopoly.model.entity.Permissao;
 import br.com.Monopoly.model.entity.Usuario;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.ScrollPane;
 
 /**
@@ -17,12 +18,12 @@ import javafx.scene.control.ScrollPane;
  */
 public class Sessao {
 
-    public static Usuario usuario;
     public static ScrollPane container;
+    public static SimpleObjectProperty<Usuario> usuario=new SimpleObjectProperty<>();
 
     public static boolean verificarPermissao(Funcionalidade func) {
-        if (usuario != null) {
-            Permissao permissao = new PermissaoDAO().buscarPorID(new Permissao.PermissaoID(func, usuario));
+        if (usuario.getValue() != null) {
+            Permissao permissao = new PermissaoDAO().buscarPorID(new Permissao.PermissaoID(func, usuario.getValue()));
             if (permissao != null) {
                 return !permissao.isDel();
             } else {

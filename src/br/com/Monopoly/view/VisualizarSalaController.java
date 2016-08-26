@@ -5,6 +5,7 @@
  */
 package br.com.Monopoly.view;
 
+import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.dao.SalaDAO;
 import br.com.Monopoly.model.entity.Sala;
 import java.net.URL;
@@ -51,7 +52,11 @@ public class VisualizarSalaController implements Initializable {
 
     public void carregarSalas() {
         for (Sala sala : new SalaDAO().buscarTodos()) {
-            
+            if (!salasAdicionadas.contains(sala)) {
+                salasAdicionadas.add(sala);
+                gpSalas.add(GerenciadorDeJanelas.carregarComponente("DescricaoSala"), salasAdicionadas.indexOf(sala), 0);
+            }
+
         }
     }
 }
