@@ -9,7 +9,6 @@ import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.Sessao;
 import br.com.Monopoly.control.dao.UsuarioDAO;
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 /**
@@ -21,9 +20,10 @@ public class StartGame extends Application {
     @Override
     public void start(Stage primaryStage) {
         //Desenvolvedor
-        Sessao.usuario = new UsuarioDAO().login("master", "123");
-//        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("Principal"), "Tela principal", GerenciadorDeJanelas.Tipo.MAXIMIZED, GerenciadorDeJanelas.Tipo.UNDECORATED).show();
-        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("GerenciarPerfil",Sessao.usuario), "Perfil - Monopoly Deal", GerenciadorDeJanelas.Tipo.EXIT_ON_CLOSE, GerenciadorDeJanelas.Tipo.UNRESIZABLE).show();
+//        Sessao.usuario = new UsuarioDAO().login("master", "123");
+        Sessao.usuario = new UsuarioDAO().login("lucasbiel7", "lucas");
+        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("Principal"), "Tela principal", GerenciadorDeJanelas.Tipo.MAXIMIZED, GerenciadorDeJanelas.Tipo.UNDECORATED).show();
+//        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("GerenciarPerfil",Sessao.usuario), "Perfil - Monopoly Deal", GerenciadorDeJanelas.Tipo.EXIT_ON_CLOSE, GerenciadorDeJanelas.Tipo.UNRESIZABLE).show();
 //Instalador
 //        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("Login"), "Monopoly Deal", GerenciadorDeJanelas.Tipo.EXIT_ON_CLOSE,GerenciadorDeJanelas.Tipo.UNRESIZABLE).show();
     }

@@ -9,6 +9,7 @@ import br.com.Monopoly.control.dao.PermissaoDAO;
 import br.com.Monopoly.model.Funcionalidade;
 import br.com.Monopoly.model.entity.Permissao;
 import br.com.Monopoly.model.entity.Usuario;
+import javafx.scene.control.ScrollPane;
 
 /**
  *
@@ -17,6 +18,7 @@ import br.com.Monopoly.model.entity.Usuario;
 public class Sessao {
 
     public static Usuario usuario;
+    public static ScrollPane container;
 
     public static boolean verificarPermissao(Funcionalidade func) {
         if (usuario != null) {

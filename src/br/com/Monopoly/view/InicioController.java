@@ -5,10 +5,16 @@
  */
 package br.com.Monopoly.view;
 
+import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.Sessao;
+import br.com.Monopoly.control.dao.JogadorDAO;
+import br.com.Monopoly.control.dao.SalaDAO;
 import br.com.Monopoly.model.Funcionalidade;
+import br.com.Monopoly.model.entity.Jogador;
+import br.com.Monopoly.model.entity.Sala;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -31,7 +37,19 @@ public class InicioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("teste");
         btCriarSala.setVisible(Sessao.verificarPermissao(Funcionalidade.CRIARSALA));
+    }
+
+    @FXML
+    public void btCriarSalaActionEvent(ActionEvent actionEvent) {
+        Sala sala = new Sala();
+        sala.setCapacidade(5);
+        sala.setJogando(false);
+        new SalaDAO().salvar(sala);
+        Jogador jogador = new Jogador();
+        jogador.setId(new Jogador.JogadorID(Sessao.usuario, sala));
+        jogador.setCriador(true);
+        new JogadorDAO().salvar(jogador);
+        GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Sala", sala));
     }
 }

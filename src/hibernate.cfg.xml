@@ -12,5 +12,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="br.com.Monopoly.model.entity.Usuario"/> 
         <mapping class="br.com.Monopoly.model.entity.Permissao"/> 
+        <mapping class="br.com.Monopoly.model.entity.Sala"/> 
+        <mapping class="br.com.Monopoly.model.entity.Jogador"/> 
     </session-factory>
 </hibernate-configuration>

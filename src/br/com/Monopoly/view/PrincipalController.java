@@ -6,6 +6,7 @@
 package br.com.Monopoly.view;
 
 import br.com.Monopoly.control.GerenciadorDeJanelas;
+import br.com.Monopoly.control.Sessao;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -35,7 +36,8 @@ public class PrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            GerenciadorDeJanelas.inserirPainel(spContainer, GerenciadorDeJanelas.carregarComponente("Inicio"));
+        GerenciadorDeJanelas.inserirPainel(spContainer, GerenciadorDeJanelas.carregarComponente("Inicio"));
+        Sessao.container = spContainer;
     }
 
     @FXML
@@ -48,4 +50,8 @@ public class PrincipalController implements Initializable {
         ((Stage) apPrincipal.getScene().getWindow()).setIconified(true);
     }
 
+    @FXML
+    public void miPerfilActionEvent(ActionEvent actionEvent) {
+        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("GerenciarPerfil", Sessao.usuario), "Perfil - Monopoly Deal", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNRESIZABLE).showAndWait();
+    }
 }

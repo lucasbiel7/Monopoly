@@ -26,7 +26,7 @@
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="500000.0" text="Label" />
                   <Button mnemonicParsing="false" onAction="#btMinimizarActionEvent" prefHeight="25.0" prefWidth="28.0" styleClass="janela-botoes">
                      <graphic>
-                        <ImageView fitHeight="15.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@image/minimizar.png" />
                            </image>
@@ -35,7 +35,7 @@
                   </Button>
                   <Button id="fechar" mnemonicParsing="false" onAction="#btFecharActionEvent" prefHeight="25.0" prefWidth="28.0" styleClass="janela-botoes">
                      <graphic>
-                        <ImageView fitHeight="15.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@image/fechar.png" />
                            </image>
@@ -48,13 +48,13 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Perfil">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Editar" />
+                    <MenuItem mnemonicParsing="false" onAction="#miPerfilActionEvent" text="Editar" />
                   </items>
                 </Menu>
               </menus>
             </MenuBar>
          </children>
       </VBox>
-      <ScrollPane fx:id="spContainer" layoutX="8.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.5" />
+      <ScrollPane fx:id="spContainer" layoutX="8.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="51.0" />
    </children>
 </AnchorPane>

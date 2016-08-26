@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="493.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.Monopoly.view.SalaController">
+    <stylesheets>
+        <URL value="@estilo.css" />
+    </stylesheets>
+   <children>
+      <Button layoutX="536.0" layoutY="338.0" mnemonicParsing="false" onAction="#btConfiguracaoActionEvent" prefHeight="48.0" prefWidth="12.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/configuracao.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ScrollPane layoutX="24.0" layoutY="138.0" prefHeight="148.0" prefWidth="561.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+         <content>
+            <GridPane fx:id="gpUsuarios">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" />
+              </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <ImageView fitHeight="111.0" fitWidth="112.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="415.0" layoutY="338.0" mnemonicParsing="false" onAction="#btComecarActionEvent" prefHeight="48.0" prefWidth="112.0" text="Começar" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="73.0">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/comecar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="573.0" layoutY="2.0" mnemonicParsing="false" onAction="#btFecharSalaActionEvent" styleClass="janela-botoes" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/fechar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

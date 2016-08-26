@@ -10,8 +10,8 @@ package br.com.Monopoly.model;
  * @author OCTI-Lucas
  */
 public enum Databases {
-    DBSamuel("root", "sara", "monopoly", "localhost"),
-    DBLucas("root", "OC2016", "monopoly", "localhost");
+    DBLucas("root", "OC2016", "monopoly", "octi"),
+    DBSamuel("root", "sara", "monopoly", "localhost");
 
     private String usuario;
     private String senha;

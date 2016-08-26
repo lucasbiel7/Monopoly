@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.Monopoly.control;
-
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,14 +18,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 
 /**
  *
  * @author OCTI-Lucas
  */
-public class  GerenciadorDeJanelas {
+public class GerenciadorDeJanelas {
 
-    public static String VIEW = "/br.com.Monopoly.control/".replace(".", "/").replace("control","view");
+    public static String VIEW = "/br.com.Monopoly.control/".replace(".", "/").replace("control", "view");
 
     public static Parent carregarComponente(String fxml) {
         Parent parent = null;
@@ -84,5 +84,9 @@ public class  GerenciadorDeJanelas {
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(parent);
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2), parent);
+        fadeTransition.setFromValue(0d);
+        fadeTransition.setToValue(1d);
+        fadeTransition.playFromStart();
     }
 }
