@@ -12,5 +12,6 @@ package br.com.Monopoly.control;
 public class ConfiguracaoSistema {
 
     public static final double VERSAO = 1.0;
+    public static final String NOMEPROJETO = "Monopoly Deal";
     
 }

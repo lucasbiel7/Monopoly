@@ -18,6 +18,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -31,14 +33,22 @@ public class InicioController implements Initializable {
     private AnchorPane apPrincipal;
     @FXML
     private Button btCriarSala;
-
+    @FXML
+    private SplitPane spPainel;
+    @FXML
+    private ScrollPane spPerfil;
+    @FXML
+    private ScrollPane spConteudo;
+    @FXML
+    private ScrollPane spAmigos;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btCriarSala.setVisible(Sessao.verificarPermissao(Funcionalidade.CRIARSALA));
-
+        GerenciadorDeJanelas.inserirPainel(spPerfil, GerenciadorDeJanelas.carregarComponente("PainelPerfil"));
     }
 
     @FXML

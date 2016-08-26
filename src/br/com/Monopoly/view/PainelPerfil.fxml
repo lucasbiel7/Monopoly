@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="569.0" prefWidth="212.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.Monopoly.view.PainelPerfilController">
+    <stylesheets>
+        <URL value="@estilo.css" />
+    </stylesheets>
+   <children>
+      <VBox fx:id="vbPerfil" alignment="TOP_CENTER" layoutX="5.0" layoutY="10.0" prefHeight="545.0" prefWidth="197.0" spacing="15.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Circle fx:id="ciFoto" fill="#1f93ff00" radius="87.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="lbNome" alignment="TOP_LEFT" prefHeight="87.0" prefWidth="174.0" text="Label" wrapText="true">
+               <font>
+                  <Font name="System Bold Italic" size="23.0" />
+               </font></Label>
+            <Label fx:id="lbNumeroPartidas" alignment="TOP_LEFT" prefHeight="71.0" prefWidth="174.0" text="Numero de participações:" wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
