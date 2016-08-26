@@ -63,6 +63,7 @@ public class SalaController implements Initializable {
             carregarEspacoJogadores();
             atualizarSala();
         });
+
     }
 
     @FXML
@@ -82,6 +83,7 @@ public class SalaController implements Initializable {
         if (new JogadorDAO().pegarPorSala(sala).isEmpty()) {
 
         }
+        atualizarSala.stop();
         GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Inicio"));
     }
 

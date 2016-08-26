@@ -5,16 +5,14 @@
  */
 package br.com.Monopoly.view;
 
-import br.com.Monopoly.control.dao.SalaDAO;
 import br.com.Monopoly.model.entity.Sala;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -23,35 +21,29 @@ import javafx.scene.layout.GridPane;
  *
  * @author OCTI-Lucas
  */
-public class VisualizarSalaController implements Initializable {
+public class DescricaoSalaController implements Initializable {
 
     @FXML
     private AnchorPane apPrincipal;
 
-    private Timeline carregarSalas;
-
     @FXML
-    private GridPane gpSalas;
+    private GridPane gpPessoas;
+    @FXML
+    private ImageView ivMaster;
+    @FXML
+    private Label lbMaster;
 
-    private List<Sala> salasAdicionadas;
+    private Sala sala;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        salasAdicionadas = new ArrayList<>();
-        carregarSalas();
+        // TODO
+        Platform.runLater(() -> {
+            sala = (Sala) apPrincipal.getUserData();
+        });
     }
-
-    @FXML
-    public void btAtualizarActionEvent(ActionEvent actionEvent) {
-
-    }
-
-    public void carregarSalas() {
-        for (Sala sala : new SalaDAO().buscarTodos()) {
-            
-        }
-    }
+    
 }

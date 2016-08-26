@@ -25,9 +25,9 @@
          </graphic></Button>
       <SplitPane fx:id="spPainel" dividerPositions="0.2746478873239437, 0.75" layoutX="14.0" layoutY="52.0" prefHeight="340.0" prefWidth="579.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="52.0">
          <items>
-            <ScrollPane fx:id="spPerfil" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" />
+            <ScrollPane fx:id="spPerfil" maxWidth="250.0" minWidth="0.0" />
             <ScrollPane fx:id="spConteudo" />
-            <ScrollPane fx:id="spAmigos" maxWidth="347.0" minWidth="250.0" prefHeight="404.0" prefWidth="347.0" />
+            <ScrollPane fx:id="spAmigos" maxWidth="347.0" minWidth="0.0" />
          </items>
       </SplitPane>
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
