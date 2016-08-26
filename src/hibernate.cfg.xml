@@ -14,5 +14,6 @@
         <mapping class="br.com.Monopoly.model.entity.Permissao"/> 
         <mapping class="br.com.Monopoly.model.entity.Sala"/> 
         <mapping class="br.com.Monopoly.model.entity.Jogador"/> 
+        <mapping class="br.com.Monopoly.model.entity.Amigos"/> 
     </session-factory>
 </hibernate-configuration>
