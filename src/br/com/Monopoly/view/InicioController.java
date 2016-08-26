@@ -49,6 +49,7 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         btCriarSala.setVisible(Sessao.verificarPermissao(Funcionalidade.CRIARSALA));
         GerenciadorDeJanelas.inserirPainel(spPerfil, GerenciadorDeJanelas.carregarComponente("PainelPerfil"));
+        GerenciadorDeJanelas.inserirPainel(spAmigos, GerenciadorDeJanelas.carregarComponente("PainelAmigos"));
     }
 
     @FXML

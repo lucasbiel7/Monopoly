@@ -89,7 +89,7 @@ public class Amigos implements Serializable{
     private boolean aceito;
     
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(columnDefinition = "dateTime defaut now()",insertable = false)
+    @Column(columnDefinition = "dateTime default now()",insertable = false)
     private Date dataSolicitacao;
     
     public Amigos() {

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
@@ -36,13 +37,15 @@ public class PainelAmigosController implements Initializable {
     private TreeItem tiAmigos;
 
     private TreeItem tiPendentes;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tiAmigos = new TreeItem("Amigos");
         tiPendentes = new TreeItem("Pendencias de Amizade");
         tvAmigos.setRoot(new TreeItem("Lista de Amizades"));
         List<Amigos> meusAmigos = new AmigosDAO().buscarAmizades(Sessao.usuario);
+        int amigos = 0;
+        int pendentes = 0;
         for (Amigos meuAmigo : meusAmigos) {
             if (meuAmigo.isAceito()) {
                 if (meuAmigo.getId().getConvidado().equals(Sessao.usuario)) {
@@ -50,17 +53,19 @@ public class PainelAmigosController implements Initializable {
                 } else {
                     tiAmigos.getChildren().add(meuAmigo.getId().getConvidado());
                 }
+                amigos++;
             }else{
                 if (meuAmigo.getId().getConvidado().equals(Sessao.usuario)) {
                     tiPendentes.getChildren().add(meuAmigo.getId().getRemetente());
                 } else {
                     tiPendentes.getChildren().add(meuAmigo.getId().getConvidado());
                 }
+                pendentes++;
             }
         }
+       
         tvAmigos.getRoot().getChildren().add(tiAmigos);
         tvAmigos.getRoot().getChildren().add(tiPendentes);
-        
     }
 
 }

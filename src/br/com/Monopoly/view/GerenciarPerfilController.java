@@ -8,6 +8,7 @@ package br.com.Monopoly.view;
 import br.com.Monopoly.control.Alerta;
 import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.Seguranca;
+import br.com.Monopoly.control.Sessao;
 import br.com.Monopoly.control.Validador;
 import br.com.Monopoly.control.dao.PermissaoDAO;
 import br.com.Monopoly.control.dao.UsuarioDAO;
@@ -239,6 +240,9 @@ public class GerenciarPerfilController implements Initializable {
         /**
          * Caso o botão seja pressionado a tela é fechada. *
          */
+        if (apPrincipal.getUserData() != null) {
+            Sessao.usuario = new UsuarioDAO().buscarPorID(usuario.getId());
+        }
         ((Stage) apPrincipal.getScene().getWindow()).close();
     }
 
