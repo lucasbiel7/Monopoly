@@ -86,6 +86,15 @@ public class Jogador implements Serializable {
     private JogadorID id;
     private boolean criador;
     private boolean del;
+    private int numero;
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
     public JogadorID getId() {
         return id;

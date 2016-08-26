@@ -14,4 +14,10 @@ import br.com.Monopoly.model.entity.Jogador;
  */
 public class JogadorDAO extends GenericaDAO<Jogador> {
 
+    @Override
+    public void deletar(Jogador entity) {
+        entity.setDel(true);
+        editar(entity);
+    }
+
 }

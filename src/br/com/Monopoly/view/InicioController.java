@@ -38,6 +38,7 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btCriarSala.setVisible(Sessao.verificarPermissao(Funcionalidade.CRIARSALA));
+
     }
 
     @FXML
@@ -49,6 +50,7 @@ public class InicioController implements Initializable {
         Jogador jogador = new Jogador();
         jogador.setId(new Jogador.JogadorID(Sessao.usuario, sala));
         jogador.setCriador(true);
+        jogador.setNumero(0);
         new JogadorDAO().salvar(jogador);
         GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Sala", sala));
     }
