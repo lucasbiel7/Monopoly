@@ -5,6 +5,8 @@
  */
 package br.com.Monopoly.control.dao;
 
+import br.com.Monopoly.control.Sessao;
+import br.com.Monopoly.model.Funcionalidade;
 import br.com.Monopoly.model.GenericaDAO;
 import br.com.Monopoly.model.entity.Permissao;
 import br.com.Monopoly.model.entity.Usuario;

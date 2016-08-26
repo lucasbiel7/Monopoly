@@ -10,6 +10,15 @@
             <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/StartGame.java</file>
             <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/entity/Jogador.java</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/CadastrarController.java</file>
+            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/estilo.css</file>
+            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/PrincipalController.java</file>
+            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/dao/PermissaoDAO.java</file>
+            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/AlterarSenhaController.java</file>
+            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/dao/UsuarioDAO.java</file>
+            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/Sessao.java</file>
+            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/entity/Permissao.java</file>
+        </group>
     </open-files>
 </project-private>
