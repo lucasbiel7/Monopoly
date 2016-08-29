@@ -23,6 +23,13 @@ public class StartGame extends Application {
         //Desenvolvedor
 //        Sessao.usuario = new UsuarioDAO().login("master", "123");
         Sessao.usuario.set(new UsuarioDAO().login("lucasbiel7", Seguranca.criptografar("lucas")));
+        if(Sessao.usuario.getValue() == null){
+            Sessao.usuario.set(new UsuarioDAO().login("s", Seguranca.criptografar("s")));
+            if(Sessao.usuario.getValue() == null){
+                Sessao.usuario.setValue(new UsuarioDAO().buscarTodos().get(0));
+            }
+        }
+        
         GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("Principal"), "Tela principal", GerenciadorDeJanelas.Tipo.MAXIMIZED, GerenciadorDeJanelas.Tipo.UNDECORATED).show();
 //        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("GerenciarPerfil",Sessao.usuario), "Perfil - Monopoly Deal", GerenciadorDeJanelas.Tipo.EXIT_ON_CLOSE, GerenciadorDeJanelas.Tipo.UNRESIZABLE).show();
 //Instalador
