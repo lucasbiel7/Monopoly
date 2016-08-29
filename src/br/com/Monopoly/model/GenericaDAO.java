@@ -68,7 +68,7 @@ public class GenericaDAO<Entity extends Serializable> implements AcoesBD<Entity>
 
     @Override
     public List<Entity> buscarTodos() {
-        entitys = criteria.list();
+        entitys = criteria.add(Restrictions.eq("del", false)).list();
         closeSession();
         return entitys;
     }

@@ -10,31 +10,6 @@
             <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/StartGame.java</file>
             <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/entity/Jogador.java</file>
         </group>
-        <group>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/GerenciarPerfil.fxml</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/entity/Jogador.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/dao/AmigosDAO.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/PrincipalController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/ConfiguracaoSistema.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/AlterarSenhaController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/PainelPerfilController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/dao/SalaDAO.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/dao/UsuarioDAO.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/Sessao.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/PainelAmigosController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/Databases.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/StartGame.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/GerenciarPerfilController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/estilo.css</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/hibernate.cfg.xml</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/PainelAmigos.fxml</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/entity/Usuario.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/dao/PermissaoDAO.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/LoginController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/dao/JogadorDAO.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/InicioController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/entity/Amigos.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/entity/Permissao.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

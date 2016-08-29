@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="130.0" prefWidth="275.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.Monopoly.view.DescricaoSalaController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="130.0" prefWidth="275.0" styleClass="panel-transparent" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.Monopoly.view.DescricaoSalaController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
@@ -25,9 +25,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <ScrollPane layoutX="14.0" layoutY="54.0" prefHeight="69.0" prefWidth="247.0">
+      <ScrollPane layoutX="14.0" layoutY="54.0" prefHeight="69.0" prefWidth="247.0" styleClass="panel-transparent">
          <content>
-            <GridPane fx:id="gpPessoas">
+            <GridPane fx:id="gpPessoas" hgap="10.0" styleClass="panel-transparent" vgap="10.0">
               <rowConstraints>
                 <RowConstraints vgrow="SOMETIMES" />
               </rowConstraints>
@@ -37,7 +37,7 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <Label fx:id="lbMaster" layoutX="14.0" layoutY="3.0" prefHeight="43.0" prefWidth="194.0" text="Label" wrapText="true">
+      <Label fx:id="lbMaster" layoutX="14.0" layoutY="3.0" prefHeight="43.0" prefWidth="194.0" wrapText="true">
          <graphic>
             <ImageView fx:id="ivMaster" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>

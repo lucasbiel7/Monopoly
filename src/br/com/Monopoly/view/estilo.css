@@ -11,6 +11,9 @@
 
 
 /*Caracteristicas especificas*/
+.panel-transparent, .panel-transparent .viewport{
+    -fx-background-color: transparent;
+}
 #btSubmit{
     -fx-background-color: none;
     -fx-font-size: 16px;
@@ -41,5 +44,12 @@
 #fechar:hover{
     -fx-background-color: red;
 }
+#barra-titulo{
+    -fx-background-color: black;
 
+}
+
+#barra-titulo .label{
+    -fx-text-fill: white;
+}
 

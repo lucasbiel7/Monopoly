@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="493.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.Monopoly.view.SalaController">
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="493.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.Monopoly.view.SalaController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
@@ -31,9 +31,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <ScrollPane layoutX="24.0" layoutY="138.0" prefHeight="148.0" prefWidth="561.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+      <ScrollPane layoutX="24.0" layoutY="138.0" prefHeight="148.0" prefWidth="561.0" styleClass="panel-transparent" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <content>
-            <GridPane fx:id="gpUsuarios" hgap="15.0" vgap="15.0">
+            <GridPane fx:id="gpUsuarios" hgap="15.0" styleClass="panel-transparent" vgap="15.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" />
               </columnConstraints>

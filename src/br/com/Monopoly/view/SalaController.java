@@ -5,10 +5,12 @@
  */
 package br.com.Monopoly.view;
 
+import br.com.Monopoly.control.Alerta;
 import br.com.Monopoly.control.GerenciadorDeImagem;
 import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.Sessao;
 import br.com.Monopoly.control.dao.JogadorDAO;
+import br.com.Monopoly.control.dao.SalaDAO;
 import br.com.Monopoly.model.entity.Jogador;
 import br.com.Monopoly.model.entity.Sala;
 import java.net.URL;
@@ -23,6 +25,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -79,9 +82,15 @@ public class SalaController implements Initializable {
     @FXML
     public void btFecharSalaActionEvent(ActionEvent actionEvent) {
         Jogador jogador = new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.getValue(), sala));
-        new JogadorDAO().deletar(jogador);
-        if (new JogadorDAO().pegarPorSala(sala).isEmpty()) {
-
+        if (new JogadorDAO().pegarPorSala(sala).size() == 1) {
+            if (Alerta.confirmacao("Deseja realmente sair da sala?\n"
+                    + "Ao sair dessa sala ela também será apagaga \n"
+                    + "porque você é o ultimo membro!")) {
+                new JogadorDAO().deletar(jogador);
+                new SalaDAO().deletar(sala);
+            }
+        } else {
+            new JogadorDAO().deletar(jogador);
         }
         atualizarSala.stop();
         GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Inicio"));
@@ -89,10 +98,11 @@ public class SalaController implements Initializable {
 
     private void carregarEspacoJogadores() {
         painelJogadores = new ArrayList<>();
+        Image image = GerenciadorDeImagem.carregarImage("semusuario.png");
         for (int i = 0; i < sala.getCapacidade(); i++) {
             Label label = new Label();
-            Circle circle = new Circle(25);
-            circle.setFill(new ImagePattern(GerenciadorDeImagem.carregarImage("semusuario.png")));
+            Circle circle = new Circle(50);
+            circle.setFill(new ImagePattern(image));
             label.setGraphic(circle);
             label.setText("Sem usuário");
             label.setWrapText(true);

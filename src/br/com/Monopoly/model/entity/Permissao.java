@@ -101,8 +101,7 @@ public class Permissao implements Serializable {
         this.ativado = ativado;
         this.del = del;
     }
-    
-    
+
     public void setId(PermissaoID id) {
         this.id = id;
     }

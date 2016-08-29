@@ -20,7 +20,7 @@
    <children>
       <VBox prefHeight="50.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="200.0" spacing="3.0">
+            <HBox id="barra-titulo" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="200.0" spacing="3.0">
                <children>
                   <ImageView fx:id="ivIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="500000.0" text="Label" />

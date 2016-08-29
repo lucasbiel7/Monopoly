@@ -10,6 +10,7 @@ import br.com.Monopoly.control.dao.JogadorDAO;
 import br.com.Monopoly.model.entity.Jogador;
 import br.com.Monopoly.model.entity.Sala;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
@@ -56,6 +57,7 @@ public class DescricaoSalaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        pessoas = new ArrayList<>();
         Platform.runLater(() -> {
             sala = (Sala) apPrincipal.getUserData();
             carregarSala();
@@ -73,7 +75,7 @@ public class DescricaoSalaController implements Initializable {
     private void carregarSala() {
         Image image = GerenciadorDeImagem.carregarImage("semusuario.png");
         for (int i = 0; i < sala.getCapacidade(); i++) {
-            Circle circle = new Circle(10);
+            Circle circle = new Circle(20);
             circle.setFill(new ImagePattern(image));
             gpPessoas.add(circle, i % 5, i / 5);
             pessoas.add(circle);

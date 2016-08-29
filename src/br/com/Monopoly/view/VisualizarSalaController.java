@@ -47,16 +47,15 @@ public class VisualizarSalaController implements Initializable {
 
     @FXML
     public void btAtualizarActionEvent(ActionEvent actionEvent) {
-
+        carregarSalas();
     }
 
     public void carregarSalas() {
         for (Sala sala : new SalaDAO().buscarTodos()) {
             if (!salasAdicionadas.contains(sala)) {
                 salasAdicionadas.add(sala);
-                gpSalas.add(GerenciadorDeJanelas.carregarComponente("DescricaoSala"), salasAdicionadas.indexOf(sala), 0);
+                gpSalas.add(GerenciadorDeJanelas.carregarComponente("DescricaoSala", sala), salasAdicionadas.indexOf(sala) % 3, salasAdicionadas.indexOf(sala) / 3);
             }
-
         }
     }
 }
