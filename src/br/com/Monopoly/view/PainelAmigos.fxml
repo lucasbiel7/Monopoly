@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="616.0" prefWidth="276.0" styleClass="panel-transparent" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.Monopoly.view.PainelAmigosController">
+<AnchorPane fx:id="apPrincipal" prefHeight="616.0" prefWidth="276.0" styleClass="panel-transparent" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.Monopoly.view.PainelAmigosController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>

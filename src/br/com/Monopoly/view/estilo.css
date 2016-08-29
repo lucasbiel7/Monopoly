@@ -7,6 +7,9 @@
 
 .mainFxmlClass {
     -fx-background-image: url("image/wp_monopoly1357_1280.jpg");
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    
 }
 
 

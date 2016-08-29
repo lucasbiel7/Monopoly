@@ -7,6 +7,8 @@ package br.com.Monopoly.control.dao;
 
 import br.com.Monopoly.model.entity.Usuario;
 import br.com.Monopoly.model.GenericaDAO;
+import java.util.List;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -21,5 +23,10 @@ public class UsuarioDAO extends GenericaDAO<Usuario> {
         return entity;
     }
     
+    public List<Usuario> buscarPorNome(String nome){
+        entitys = criteria.add(Restrictions.ilike("nome", nome, MatchMode.START)).list();
+        closeSession();
+        return entitys;
+    }
     
 }
