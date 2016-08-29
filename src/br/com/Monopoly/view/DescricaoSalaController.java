@@ -6,6 +6,7 @@
 package br.com.Monopoly.view;
 
 import br.com.Monopoly.control.GerenciadorDeImagem;
+import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.Sessao;
 import br.com.Monopoly.control.dao.JogadorDAO;
 import br.com.Monopoly.model.entity.Jogador;
@@ -17,8 +18,8 @@ import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -73,19 +74,14 @@ public class DescricaoSalaController implements Initializable {
             }));
             atualizarPessoas.setCycleCount(Timeline.INDEFINITE);
             atualizarPessoas.play();
-            Sessao.container.contentProperty().addListener(new ChangeListener<Node>() {
-                @Override
-                public void changed(ObservableValue<? extends Node> observable, Node oldValue, Node newValue) {
+            Sessao.container.contentProperty().addListener((ObservableValue<? extends Node> observable, Node oldValue, Node newValue) -> {
+                atualizarPessoas.stop();
+            });
+            apPrincipal.getParent().getChildrenUnmodifiable().addListener((ListChangeListener.Change<? extends Node> c) -> {
+                if (!c.getList().contains(apPrincipal)) {
                     atualizarPessoas.stop();
-                    System.out.println("Atualizar pessoas stoping");
                 }
             });
-        });
-        apPrincipal.visibleProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-
-            }
         });
     }
 
@@ -119,6 +115,19 @@ public class DescricaoSalaController implements Initializable {
 
     @FXML
     public void btEntrarActionEvent(ActionEvent actionEvent) {
-
+        Jogador jogador = new Jogador();
+        jogador.setId(new Jogador.JogadorID(Sessao.usuario.get(), sala));
+        jogador.setDel(false);
+        for (int i = 0; i < sala.getCapacidade(); i++) {
+            if (new JogadorDAO().pegarPorSalaNumero(sala, i) == null) {
+                jogador.setNumero(i);
+            }
+        }
+        if (new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.get(), sala)) == null) {
+            new JogadorDAO().salvar(jogador);
+        } else {
+            new JogadorDAO().editar(jogador);
+        }
+        GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Sala", sala));
     }
 }
