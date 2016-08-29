@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="428.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.Monopoly.view.BuscarNovoAmigoController">
+    <stylesheets>
+        <URL value="@estilo.css" />
+    </stylesheets>
+   <children>
+      <Label fx:id="lbTitulo" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="575.0" text="Buscar Amigos" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfNomeBusca" layoutX="14.0" layoutY="49.0" prefHeight="25.0" prefWidth="517.0" promptText="Digite o nome ..." AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="49.0" />
+      <Button fx:id="btBuscar" layoutX="540.0" layoutY="41.0" mnemonicParsing="false" onAction="#btBuscarEvent" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="41.0">
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/pesquisar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ListView fx:id="lvBusca" layoutX="14.0" layoutY="85.0" prefHeight="272.0" prefWidth="576.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0" />
+      <Button id="btFecharTrasparente" fx:id="btFechar" layoutX="537.0" layoutY="361.0" mnemonicParsing="false" onAction="#btFecharEvent" prefHeight="25.0" prefWidth="79.0" text="Fechar" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
