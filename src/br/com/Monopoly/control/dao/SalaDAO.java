@@ -13,5 +13,7 @@ import br.com.Monopoly.model.entity.Sala;
  * @author OCTI-Lucas
  */
 public class SalaDAO extends GenericaDAO<Sala> {
+
+    
     
 }

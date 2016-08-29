@@ -41,7 +41,7 @@ public class InicioController implements Initializable {
     private ScrollPane spConteudo;
     @FXML
     private ScrollPane spAmigos;
-    
+
     /**
      * Initializes the controller class.
      */
@@ -50,6 +50,7 @@ public class InicioController implements Initializable {
         btCriarSala.setVisible(Sessao.verificarPermissao(Funcionalidade.CRIARSALA));
         GerenciadorDeJanelas.inserirPainel(spPerfil, GerenciadorDeJanelas.carregarComponente("PainelPerfil"));
         GerenciadorDeJanelas.inserirPainel(spAmigos, GerenciadorDeJanelas.carregarComponente("PainelAmigos"));
+        GerenciadorDeJanelas.inserirPainel(spConteudo, GerenciadorDeJanelas.carregarComponente("VisualizarSala"));
     }
 
     @FXML

@@ -11,12 +11,14 @@ import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import org.hibernate.annotations.SQLDelete;
 
 /**
  *
  * @author OCTI-Lucas
  */
 @Entity
+@SQLDelete(sql = "update Jogador set del=true where usuario_id=? and sala_id=?")
 public class Jogador implements Serializable {
 
     @Embeddable

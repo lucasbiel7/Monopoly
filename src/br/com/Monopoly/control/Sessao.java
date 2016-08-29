@@ -19,7 +19,7 @@ import javafx.scene.control.ScrollPane;
 public class Sessao {
 
     public static ScrollPane container;
-    public static SimpleObjectProperty<Usuario> usuario=new SimpleObjectProperty<>();
+    public static SimpleObjectProperty<Usuario> usuario = new SimpleObjectProperty<>();
 
     public static boolean verificarPermissao(Funcionalidade func) {
         if (usuario.getValue() != null) {

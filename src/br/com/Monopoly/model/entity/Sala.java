@@ -12,11 +12,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.SQLDelete;
 
 /**
  *
  * @author OCTI-Lucas
  */
+@SQLDelete(sql = "update Sala set del=true where id=?;")
 @Entity
 public class Sala implements Serializable {
 

@@ -15,15 +15,19 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.SQLDelete;
 
 /**
  *
  * @author samuel
  */
+@SQLDelete(sql = "update Amigos set del=true where id=?")
 @Entity
-public class Amigos implements Serializable{
+public class Amigos implements Serializable {
+
     @Embeddable
     public static class AmigosID implements Serializable {
+
         @ManyToOne
         private Usuario remetente;
         @ManyToOne
@@ -82,16 +86,25 @@ public class Amigos implements Serializable{
             return true;
         }
     }
-    
+
     @EmbeddedId
     private AmigosID id;
-    
+
     private boolean aceito;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(columnDefinition = "dateTime default now()",insertable = false)
+    @Column(columnDefinition = "dateTime default now()", insertable = false)
     private Date dataSolicitacao;
-    
+    private boolean del;
+
+    public boolean isDel() {
+        return del;
+    }
+
+    public void setDel(boolean del) {
+        this.del = del;
+    }
+
     public Amigos() {
     }
 
@@ -147,7 +160,5 @@ public class Amigos implements Serializable{
         }
         return true;
     }
-    
-    
-    
+
 }

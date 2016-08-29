@@ -49,7 +49,7 @@ public class PainelPerfilController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         lbNome.setText(Sessao.usuario.get().getNome());
 
-        if (Sessao.usuario.get().getFoto() != null) {
+        if (Sessao.usuario.getValue().getFoto() != null) {
             ciFoto.setFill(new ImagePattern(new Image(new ByteArrayInputStream(Sessao.usuario.get().getFoto()))));
         }
 

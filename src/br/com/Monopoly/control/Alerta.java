@@ -7,6 +7,7 @@ package br.com.Monopoly.control;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 /**
  *
@@ -44,6 +45,11 @@ public class Alerta {
 
         return alert;
 
+    }
+
+    public static boolean confirmacao(String msg) {
+        Alert alert = new Alert(AlertType.CONFIRMATION, msg, ButtonType.YES, ButtonType.NO);
+        return alert.showAndWait().orElse(ButtonType.NO).equals(ButtonType.YES);
     }
 
     public enum tipoAlerta {
