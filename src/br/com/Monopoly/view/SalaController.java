@@ -5,12 +5,10 @@
  */
 package br.com.Monopoly.view;
 
-import br.com.Monopoly.control.Alerta;
 import br.com.Monopoly.control.GerenciadorDeImagem;
 import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.Sessao;
 import br.com.Monopoly.control.dao.JogadorDAO;
-import br.com.Monopoly.control.dao.SalaDAO;
 import br.com.Monopoly.model.entity.Jogador;
 import br.com.Monopoly.model.entity.Sala;
 import java.net.URL;
@@ -83,17 +81,17 @@ public class SalaController implements Initializable {
     public void btFecharSalaActionEvent(ActionEvent actionEvent) {
         Jogador jogador = new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.getValue(), sala));
         if (new JogadorDAO().pegarPorSala(sala).size() == 1) {
-            if (Alerta.confirmacao("Deseja realmente sair da sala?\n"
-                    + "Ao sair dessa sala ela também será apagaga \n"
-                    + "porque você é o ultimo membro!")) {
-                new JogadorDAO().deletar(jogador);
-                new SalaDAO().deletar(sala);
-            }
+//            if (Alerta.confirmacao("Deseja realmente sair da sala?\n"
+//                    + "Ao sair dessa sala ela também será apagaga \n"
+//                    + "porque você é o ultimo membro!")) {
+//                new JogadorDAO().deletar(jogador);
+//                new SalaDAO().deletar(sala);
+//            }
         } else {
             new JogadorDAO().deletar(jogador);
+            atualizarSala.stop();
+            GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Inicio"));
         }
-        atualizarSala.stop();
-        GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Inicio"));
     }
 
     private void carregarEspacoJogadores() {

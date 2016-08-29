@@ -13,9 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -28,21 +31,30 @@ public class VisualizarSalaController implements Initializable {
 
     @FXML
     private AnchorPane apPrincipal;
-
-    private Timeline carregarSalas;
-
     @FXML
     private GridPane gpSalas;
-
-    private List<Sala> salasAdicionadas;
+    @FXML
+    private Pagination pgSalas;
+    private List<Sala> salas;
+    private Timeline carregarSalas;
+    private final int linha = 3;
+    private final int coluna = 3;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        salasAdicionadas = new ArrayList<>();
+        salas = new ArrayList<>();
         carregarSalas();
+        pgSalas.currentPageIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                int inicio = newValue.intValue() * (linha * coluna);
+                int fim = newValue.intValue() * (linha * coluna) + 9;
+                inserirSalas(salas.subList(inicio, fim > salas.size() ? salas.size() : fim));
+            }
+        });
     }
 
     @FXML
@@ -51,10 +63,25 @@ public class VisualizarSalaController implements Initializable {
     }
 
     public void carregarSalas() {
-        for (Sala sala : new SalaDAO().buscarTodos()) {
-            if (!salasAdicionadas.contains(sala)) {
-                salasAdicionadas.add(sala);
-                gpSalas.add(GerenciadorDeJanelas.carregarComponente("DescricaoSala", sala), salasAdicionadas.indexOf(sala) % 3, salasAdicionadas.indexOf(sala) / 3);
+        salas = new SalaDAO().buscarTodos();
+        int pages = (int) Math.ceil(salas.size() * 1d / (linha * coluna));
+        pgSalas.setPageCount(pages);
+        int inicio = pgSalas.getCurrentPageIndex() * (linha * coluna);
+        int fim = pgSalas.getCurrentPageIndex() * (linha * coluna) + 9;
+        System.out.println(pgSalas.getCurrentPageIndex());
+        inserirSalas(salas.subList(inicio, fim > salas.size() ? salas.size() : fim));
+    }
+
+    private void inserirSalas(List<Sala> salas) {
+        gpSalas.getChildren().clear();
+        int linha = 0;
+        int coluna = 0;
+        for (Sala sala : salas) {
+            gpSalas.add(GerenciadorDeJanelas.carregarComponente("DescricaoSala", sala), coluna, linha);
+            coluna++;
+            if (coluna >= this.coluna) {
+                coluna = 0;
+                linha++;
             }
         }
     }

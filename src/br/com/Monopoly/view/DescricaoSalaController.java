@@ -6,6 +6,7 @@
 package br.com.Monopoly.view;
 
 import br.com.Monopoly.control.GerenciadorDeImagem;
+import br.com.Monopoly.control.Sessao;
 import br.com.Monopoly.control.dao.JogadorDAO;
 import br.com.Monopoly.model.entity.Jogador;
 import br.com.Monopoly.model.entity.Sala;
@@ -16,10 +17,13 @@ import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -69,6 +73,19 @@ public class DescricaoSalaController implements Initializable {
             }));
             atualizarPessoas.setCycleCount(Timeline.INDEFINITE);
             atualizarPessoas.play();
+            Sessao.container.contentProperty().addListener(new ChangeListener<Node>() {
+                @Override
+                public void changed(ObservableValue<? extends Node> observable, Node oldValue, Node newValue) {
+                    atualizarPessoas.stop();
+                    System.out.println("Atualizar pessoas stoping");
+                }
+            });
+        });
+        apPrincipal.visibleProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+
+            }
         });
     }
 
@@ -102,6 +119,6 @@ public class DescricaoSalaController implements Initializable {
 
     @FXML
     public void btEntrarActionEvent(ActionEvent actionEvent) {
-        
+
     }
 }
