@@ -17,7 +17,7 @@
             <Circle fx:id="ciFoto" fill="#1f93ff00" radius="87.0" stroke="BLACK" strokeType="INSIDE" />
             <Label fx:id="lbNome" alignment="TOP_LEFT" prefHeight="87.0" prefWidth="174.0" text="Label" wrapText="true">
                <font>
-                  <Font name="System Bold Italic" size="23.0" />
+                  <Font name="System Bold Italic" size="19.0" />
                </font></Label>
             <Label fx:id="lbNumeroPartidas" alignment="TOP_LEFT" prefHeight="71.0" prefWidth="174.0" text="Numero de participações:" wrapText="true">
                <font>
