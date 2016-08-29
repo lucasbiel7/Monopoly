@@ -58,16 +58,18 @@ public class PainelAmigosController implements Initializable {
         for (Amigos meuAmigo : meusAmigos) {
             if (meuAmigo.isAceito()) {
                 if (meuAmigo.getId().getConvidado().equals(Sessao.usuario.get())) {
-                    tiAmigos.getChildren().add(meuAmigo.getId().getRemetente());
+                    
+                    tiAmigos.getChildren().add(new TreeItem(meuAmigo.getId().getRemetente()));
                 } else {
-                    tiAmigos.getChildren().add(meuAmigo.getId().getConvidado());
+                    tiAmigos.getChildren().add(new TreeItem(meuAmigo.getId().getConvidado()));
                 }
                 amigos++;
             }else{
                 if (meuAmigo.getId().getConvidado().equals(Sessao.usuario.get())) {
-                    tiPendentes.getChildren().add(meuAmigo.getId().getRemetente());
+                    tiPendentes.getChildren().add(new TreeItem(meuAmigo.getId().getRemetente()));
                 } else {
-                    tiPendentes.getChildren().add(meuAmigo.getId().getConvidado());
+                    tiPendentes.getChildren().add(new TreeItem(meuAmigo.getId().getConvidado()));
+                    
                 }
                 pendentes++;
             }

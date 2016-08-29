@@ -5,10 +5,14 @@
  */
 package br.com.Monopoly.control;
 
+import br.com.Monopoly.control.dao.AmigosDAO;
 import br.com.Monopoly.control.dao.PermissaoDAO;
 import br.com.Monopoly.model.Funcionalidade;
+import br.com.Monopoly.model.entity.Amigos;
 import br.com.Monopoly.model.entity.Permissao;
 import br.com.Monopoly.model.entity.Usuario;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.ScrollPane;
 
@@ -32,5 +36,20 @@ public class Sessao {
         } else {
             return false;
         }
+    }
+    
+    public static List<Usuario> meusAmigos(){
+        List<Amigos> minhasAmizades = new AmigosDAO().buscarAmizades(usuario.get());
+        List<Usuario> listaDeAmigos = new ArrayList<>();
+        
+        for (Amigos meuAmigo : minhasAmizades) {
+                if (meuAmigo.getId().getConvidado().equals(Sessao.usuario.get())) {
+                    listaDeAmigos.add(meuAmigo.getId().getRemetente());
+                } else {
+                    listaDeAmigos.add(meuAmigo.getId().getConvidado());
+                }
+        }
+        
+        return listaDeAmigos;
     }
 }

@@ -82,7 +82,7 @@ public class SalaController implements Initializable {
         Jogador jogador = new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.getValue(), sala));
         if (new JogadorDAO().pegarPorSala(sala).size() == 1) {
 //            if (Alerta.confirmacao("Deseja realmente sair da sala?\n"
-//                    + "Ao sair dessa sala ela também será apagaga \n"
+//                    + "Ao sair dessa sala ela também será apagada \n"
 //                    + "porque você é o ultimo membro!")) {
 //                new JogadorDAO().deletar(jogador);
 //                new SalaDAO().deletar(sala);

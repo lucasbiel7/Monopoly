@@ -5,16 +5,18 @@
  */
 package br.com.Monopoly.view;
 
+import br.com.Monopoly.control.Alerta;
 import br.com.Monopoly.control.GerenciadorDeImagem;
+import br.com.Monopoly.control.Sessao;
+import br.com.Monopoly.control.dao.AmigosDAO;
 import br.com.Monopoly.control.dao.UsuarioDAO;
+import br.com.Monopoly.model.entity.Amigos;
 import br.com.Monopoly.model.entity.Usuario;
-import com.sun.javafx.collections.ElementObservableListDecorator;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +27,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -86,12 +89,27 @@ public class BuscarNovoAmigoController implements Initializable {
                             setGraphic(null);
                         } else {
                             ImageView ivFoto = new ImageView(GerenciadorDeImagem.carregarImage(item.getFoto()));
+                            HBox hbGrade = new HBox();
+                            hbGrade.setMinWidth(40d);
+                            hbGrade.setSpacing(35.0);
                             ivFoto.setFitHeight(30.0);
                             ivFoto.setFitWidth(30.0);
                             ivFoto.setPreserveRatio(true);
                             ivFoto.setSmooth(true);
-                            setGraphic(ivFoto);
-                            setText(item.getNome());
+                            Label lbNome = new Label(item.getNome());
+                            lbNome.setPrefWidth(200d);
+                            Button btAdd = new Button("Solicitar Amizidade");
+                            btAdd.setOnAction((event)->{
+                                Amigos novaAmizadade = new Amigos(new Amigos.AmigosID(Sessao.usuario.get(), item));
+                                novaAmizadade.setAceito(false);
+                                new AmigosDAO().salvar(novaAmizadade);
+                                Alerta.criarAlert(Alerta.tipoAlerta.CONCLUIDO).show();
+                            });
+                            hbGrade.getChildren().add(ivFoto);
+                            hbGrade.getChildren().add(lbNome);
+                            hbGrade.getChildren().add(btAdd);
+                            
+                            setGraphic(hbGrade);
 
                         }
                     }
@@ -103,7 +121,12 @@ public class BuscarNovoAmigoController implements Initializable {
 
     @FXML
     void btBuscarEvent(ActionEvent event) {
-        lvBusca.getItems().setAll(new UsuarioDAO().buscarPorNome(tfNomeBusca.getText()));
+        buscaDeUsuarios = new UsuarioDAO().buscarPorNome(tfNomeBusca.getText());
+        List<Usuario> exilados = new ArrayList<>();
+        exilados.addAll(Sessao.meusAmigos());
+        exilados.add(Sessao.usuario.get());
+        buscaDeUsuarios.removeAll(exilados);
+        lvBusca.getItems().setAll(buscaDeUsuarios);
         lvBusca.refresh();
     }
 
