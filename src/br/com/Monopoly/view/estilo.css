@@ -46,13 +46,4 @@
 }
 #barra-titulo{
     -fx-background-color: black;
-
-#btFecharTrasparente{
-    -fx-background-color:none;
-}
-
-#btFecharTrasparente:hover{
-    -fx-cursor: hand;
-    -fx-text-fill: #ff0000;
-    -fx-font-size:18px;
 }
