@@ -22,12 +22,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Duration;
 
 /**
@@ -43,7 +48,7 @@ public class PainelAmigosController implements Initializable {
     @FXML
     private AnchorPane apPrincipal;
     @FXML
-    private TreeView tvAmigos;
+    private TreeView<Object> tvAmigos;
     @FXML
     private Button btAddAmigos;
 //Atributos da classe    
@@ -72,12 +77,61 @@ public class PainelAmigosController implements Initializable {
                 me = (Stage) apPrincipal.getScene().getWindow();
             }
         });
-        inicializadorPainelAmigos();
         tlAtualizaAmigos = new Timeline(new KeyFrame(Duration.seconds(2), (ActionEvent event) -> {
             atualizar();
         }));
         tlAtualizaAmigos.setCycleCount(Timeline.INDEFINITE);
         tlAtualizaAmigos.play();
+        tvAmigos.setCellFactory(new Callback<TreeView<Object>, TreeCell<Object>>() {
+            @Override
+            public TreeCell<Object> call(TreeView<Object> param) {
+                return new TreeCell<Object>() {
+                    @Override
+                    protected void updateItem(Object item, boolean empty) {
+                        super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
+                        if (empty) {
+                            setText("");
+                            setGraphic(null);
+                        } else {
+                            setText(item.toString());
+                            if (item instanceof Usuario) {
+                                Usuario usuario = (Usuario) item;
+                                Amigo amigo = new AmigoDAO().buscarAmizade(Sessao.usuario.get(), usuario);
+                                if (amigo != null) {
+                                    if (amigo.isAceito()) {
+                                        setText(usuario.getNome());
+                                        Circle circle = new Circle(5);
+                                        circle.setFill(usuario.isOnline() ? Color.GREEN : Color.RED);
+                                        setContentDisplay(ContentDisplay.LEFT);
+                                        setGraphic(circle);
+                                    } else if (amigo.getId().getConvidado().equals(Sessao.usuario.get())) {
+                                        HBox hbSolicitacao = new HBox();
+                                        Button btAceitarSolicitacao = new Button("Aceitar");
+                                        btAceitarSolicitacao.setOnAction((event) -> {
+                                            amigo.setAceito(true);
+                                            new AmigoDAO().editar(amigo);
+                                        });
+                                        Button btRecusarSolicitacao = new Button("Recusar");
+                                        btRecusarSolicitacao.setOnAction((event) -> {
+                                            amigo.setDel(true);
+                                            new AmigoDAO().editar(amigo);
+                                        });
+                                        hbSolicitacao.getChildren().add(btAceitarSolicitacao);
+                                        hbSolicitacao.getChildren().add(btRecusarSolicitacao);
+                                        hbSolicitacao.setSpacing(20d);
+                                        setGraphic(hbSolicitacao);
+                                        setContentDisplay(ContentDisplay.RIGHT);
+                                    }
+                                } else {
+                                    setText("");
+                                    setGraphic(null);
+                                }
+                            }
+                        }
+                    }
+                };
+            }
+        });
     }
 
     public void limpar() {
@@ -85,65 +139,54 @@ public class PainelAmigosController implements Initializable {
     }
 
     public void atualizar() {
-        List<Usuario> amigos = new AmigoDAO().buscarAmizades(Sessao.usuario.get()).stream().map((Amigo t) -> {
+        final List<Usuario> amigosPedentesBanco = new AmigoDAO().buscarAmigosPendentes(Sessao.usuario.get()).stream().map((Amigo t) -> {
             if (t.getId().getConvidado().equals(Sessao.usuario.get())) {
                 return t.getId().getRemetente();
             } else {
                 return t.getId().getConvidado();
             }
         }).collect(Collectors.toList());
-        List<Usuario> amigosAdicionados = (List<Usuario>) tiAmigos.getChildren().stream().map(new Function<Object, Usuario>() {
-            @Override
-            public Usuario apply(Object t) {
-                return (Usuario) ((TreeItem) t).getValue();
-            }
-        }).collect(Collectors.toList());
-        List<Usuario> amigosPendentes = (List<Usuario>) tiPendentes.getChildren().stream().map(new Function<Object, Usuario>() {
-            @Override
-            public Usuario apply(Object t) {
-                return (Usuario) ((TreeItem) t).getValue();
-            }
-        }).collect(Collectors.toList());
-        
-    }
-
-    public void inicializadorPainelAmigos() {
-        tiAmigos.getChildren().clear();
-        tiPendentes.getChildren().clear();
-        meusAmigos = new AmigoDAO().buscarAmizades(Sessao.usuario.get());
-        System.out.println(meusAmigos.size());
-        for (Amigo meuAmigo : meusAmigos) {
-            if (meuAmigo.isAceito()) {
-                if (meuAmigo.getId().getConvidado().equals(Sessao.usuario.get())) {
-                    tiAmigos.getChildren().add(new TreeItem(meuAmigo.getId().getRemetente()));
-                } else {
-                    tiAmigos.getChildren().add(new TreeItem(meuAmigo.getId().getConvidado()));
-                }
-            } else if (meuAmigo.getId().getConvidado().equals(Sessao.usuario.get())) {
-                HBox hbSolicitacao = new HBox();
-                TreeItem solicitacao = new TreeItem(meuAmigo.getId().getRemetente());
-                Button btAceitarSolicitacao = new Button("Aceitar");
-                btAceitarSolicitacao.setOnAction((event) -> {
-                    meuAmigo.setAceito(true);
-                    new AmigoDAO().editar(meuAmigo);
-                    inicializadorPainelAmigos();
-                });
-                Button btRecusarSolicitacao = new Button("Recusar");
-                btRecusarSolicitacao.setOnAction((event) -> {
-                    meuAmigo.setDel(true);
-                    new AmigoDAO().editar(meuAmigo);
-                    inicializadorPainelAmigos();
-                });
-                hbSolicitacao.getChildren().add(btAceitarSolicitacao);
-                hbSolicitacao.getChildren().add(btRecusarSolicitacao);
-                hbSolicitacao.setSpacing(20d);
-                solicitacao.setGraphic(hbSolicitacao);
-                tiPendentes.getChildren().add(solicitacao);
+        final List<Usuario> amigosAdicionadosBanco = new AmigoDAO().buscarAmigosAceitos(Sessao.usuario.get()).stream().map((Amigo t) -> {
+            if (t.getId().getConvidado().equals(Sessao.usuario.get())) {
+                return t.getId().getRemetente();
             } else {
-                tiPendentes.getChildren().add(new TreeItem(meuAmigo.getId().getConvidado()));
+                return t.getId().getConvidado();
             }
-
+        }).collect(Collectors.toList());
+        final List<Usuario> amigosAdicionados = (List<Usuario>) tiAmigos.getChildren().stream().map(new Function<Object, Usuario>() {
+            @Override
+            public Usuario apply(Object t) {
+                return (Usuario) ((TreeItem) t).getValue();
+            }
+        }).collect(Collectors.toList());
+        final List<Usuario> amigosPendentes = (List<Usuario>) tiPendentes.getChildren().stream().map(new Function<Object, Usuario>() {
+            @Override
+            public Usuario apply(Object t) {
+                return (Usuario) ((TreeItem) t).getValue();
+            }
+        }).collect(Collectors.toList());
+        //Remover
+        tiAmigos.getChildren().removeIf((Object t) -> {
+            TreeItem treeItem = (TreeItem) t;
+            return !amigosAdicionadosBanco.contains(treeItem.getValue());
+        });
+        tiPendentes.getChildren().removeIf((Object t) -> {
+            TreeItem treeItem = (TreeItem) t;
+            return !amigosPedentesBanco.contains(treeItem.getValue());
+        });
+        //Adicionar novos
+        amigosPedentesBanco.removeAll(amigosPendentes);
+        amigosAdicionadosBanco.removeAll(amigosAdicionados);
+        for (Usuario usuario : amigosAdicionadosBanco) {
+            adicionar(usuario, tiAmigos);
+        }
+        for (Usuario usuario : amigosPedentesBanco) {
+            adicionar(usuario, tiPendentes);
         }
     }
 
+    private void adicionar(Usuario usuario, TreeItem tiAmigos) {
+        TreeItem solicitacao = new TreeItem(usuario);
+        tiAmigos.getChildren().add(solicitacao);
+    }
 }

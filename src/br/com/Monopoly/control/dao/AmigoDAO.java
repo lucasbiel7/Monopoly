@@ -18,25 +18,36 @@ import org.hibernate.criterion.Restrictions;
 public class AmigoDAO extends GenericaDAO<Amigo> {
 
     public List<Amigo> buscarAmizades(Usuario user) {
-        entitys = criteria.add(Restrictions.or(Restrictions.eq("id.remetente", user),Restrictions.eq("id.convidado", user))).list();
+        entitys = criteria.add(Restrictions.or(Restrictions.eq("id.remetente", user), Restrictions.eq("id.convidado", user))).list();
         closeSession();
         return entitys;
     }
-    
-    public List<Amigo> buscarAmigosAceitos(Usuario user){
-        entitys = criteria.add(Restrictions.and(Restrictions.or(Restrictions.eq("id.remetente", user),Restrictions.eq("id.convidado", user)),Restrictions.eq("aceito", true),Restrictions.eq("del", false))).list();
+
+    public List<Amigo> buscarAmigosAceitos(Usuario user) {
+        entitys = criteria.add(Restrictions.and(Restrictions.or(Restrictions.eq("id.remetente", user), Restrictions.eq("id.convidado", user)), Restrictions.eq("aceito", true), Restrictions.eq("del", false))).list();
         closeSession();
         return entitys;
     }
-    public List<Amigo> buscarAmigosPendentes(Usuario user){
-        entitys = criteria.add(Restrictions.and(Restrictions.or(Restrictions.eq("id.remetente", user),Restrictions.eq("id.convidado", user)),Restrictions.eq("aceito", false),Restrictions.eq("del", false))).list();
+
+    public List<Amigo> buscarAmigosPendentes(Usuario user) {
+        entitys = criteria.add(Restrictions.and(Restrictions.or(Restrictions.eq("id.remetente", user), Restrictions.eq("id.convidado", user)), Restrictions.eq("aceito", false), Restrictions.eq("del", false))).list();
         closeSession();
         return entitys;
     }
-    
-    public List<Amigo> buscarAmizadesRecusadas(Usuario user){
-        entitys = criteria.add(Restrictions.and(Restrictions.or(Restrictions.eq("id.remetente", user),Restrictions.eq("id.convidado", user)),Restrictions.eq("aceito", false),Restrictions.eq("del", true))).list();
+
+    public List<Amigo> buscarAmizadesRecusadas(Usuario user) {
+        entitys = criteria.add(Restrictions.and(Restrictions.or(Restrictions.eq("id.remetente", user), Restrictions.eq("id.convidado", user)), Restrictions.eq("aceito", false), Restrictions.eq("del", true))).list();
         closeSession();
         return entitys;
+    }
+
+    public Amigo buscarAmizade(Usuario usuario1, Usuario usuario2) {
+        entity = (Amigo) criteria.add(
+                Restrictions.or(
+                        Restrictions.and(Restrictions.eq("id.remetente", usuario1), Restrictions.eq("id.convidado", usuario2)),
+                        Restrictions.and(Restrictions.eq("id.remetente", usuario2), Restrictions.eq("id.convidado", usuario1))
+                )).uniqueResult();
+        closeSession();
+        return entity;
     }
 }
