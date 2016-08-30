@@ -103,6 +103,7 @@ public class DescricaoSalaController implements Initializable {
                         jogador.setNumero(pessoas.indexOf(circle));
                         jogador.setCriador(new JogadorDAO().pegarPorSala(sala).isEmpty());
                         if (new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.get(), sala)) == null) {
+                            
                             new JogadorDAO().salvar(jogador);
                         } else {
                             new JogadorDAO().editar(jogador);
