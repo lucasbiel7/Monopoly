@@ -112,11 +112,13 @@ public class PainelAmigosController implements Initializable {
                                         btAceitarSolicitacao.setOnAction((event) -> {
                                             amigo.setAceito(true);
                                             new AmigoDAO().editar(amigo);
+                                            atualizar();
                                         });
                                         Button btRecusarSolicitacao = new Button("Recusar");
                                         btRecusarSolicitacao.setOnAction((event) -> {
                                             amigo.setDel(true);
                                             new AmigoDAO().editar(amigo);
+                                            atualizar();
                                         });
                                         hbSolicitacao.getChildren().add(btAceitarSolicitacao);
                                         hbSolicitacao.getChildren().add(btRecusarSolicitacao);
