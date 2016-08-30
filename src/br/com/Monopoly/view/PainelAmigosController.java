@@ -7,21 +7,18 @@ package br.com.Monopoly.view;
 
 import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.Sessao;
-import br.com.Monopoly.control.dao.AmigosDAO;
-import br.com.Monopoly.model.entity.Amigos;
+import br.com.Monopoly.control.dao.AmigoDAO;
+import br.com.Monopoly.model.entity.Amigo;
 import br.com.Monopoly.model.entity.Usuario;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -45,111 +42,104 @@ public class PainelAmigosController implements Initializable {
      */
     @FXML
     private AnchorPane apPrincipal;
-
     @FXML
     private TreeView tvAmigos;
-
     @FXML
     private Button btAddAmigos;
-
+//Atributos da classe    
     private TreeItem tiAmigos;
-
     private TreeItem tiPendentes;
-
     private Stage me;
-
-    private List<Usuario> amigos;
-
-    private List<Usuario> pendentes;
-
-    private List<Amigos> meusAmigos;
+    private List<Amigo> meusAmigos;
+    private Timeline tlAtualizaAmigos;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tiAmigos = new TreeItem("Amigos");
         tiPendentes = new TreeItem("Pendencias de Amizade");
         tvAmigos.setRoot(new TreeItem("Lista de Amizades"));
-        amigos = new ArrayList<>();
-        pendentes = new ArrayList<>();
-
-        inicializadorPainelAmigos();
-
         tvAmigos.getRoot().getChildren().add(tiAmigos);
         tvAmigos.getRoot().getChildren().add(tiPendentes);
-
-        Timeline tlAtualizaAmigos = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Atualizar();
-            }
-        }));
-        tlAtualizaAmigos.setCycleCount(Timeline.INDEFINITE);
-        tlAtualizaAmigos.play();
         btAddAmigos.setOnAction((event) -> {
             Stage tela = GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("BuscarNovoAmigo"), "Encontre seu Amigo !!", GerenciadorDeJanelas.Tipo.UNDECORATED, GerenciadorDeJanelas.Tipo.UNRESIZABLE);
             tela.initModality(Modality.WINDOW_MODAL);
             tela.initOwner(me);
             tela.show();
         });
-
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 me = (Stage) apPrincipal.getScene().getWindow();
-
             }
         });
+        inicializadorPainelAmigos();
+        tlAtualizaAmigos = new Timeline(new KeyFrame(Duration.seconds(2), (ActionEvent event) -> {
+            atualizar();
+        }));
+        tlAtualizaAmigos.setCycleCount(Timeline.INDEFINITE);
+        tlAtualizaAmigos.play();
     }
 
     public void limpar() {
 
     }
 
-    public void Atualizar() {
-        inicializadorPainelAmigos();
+    public void atualizar() {
+        List<Usuario> amigos = new AmigoDAO().buscarAmizades(Sessao.usuario.get()).stream().map((Amigo t) -> {
+            if (t.getId().getConvidado().equals(Sessao.usuario.get())) {
+                return t.getId().getRemetente();
+            } else {
+                return t.getId().getConvidado();
+            }
+        }).collect(Collectors.toList());
+        List<Usuario> amigosAdicionados = (List<Usuario>) tiAmigos.getChildren().stream().map(new Function<Object, Usuario>() {
+            @Override
+            public Usuario apply(Object t) {
+                return (Usuario) ((TreeItem) t).getValue();
+            }
+        }).collect(Collectors.toList());
+        List<Usuario> amigosPendentes = (List<Usuario>) tiPendentes.getChildren().stream().map(new Function<Object, Usuario>() {
+            @Override
+            public Usuario apply(Object t) {
+                return (Usuario) ((TreeItem) t).getValue();
+            }
+        }).collect(Collectors.toList());
+        
     }
 
     public void inicializadorPainelAmigos() {
         tiAmigos.getChildren().clear();
         tiPendentes.getChildren().clear();
-        meusAmigos = new AmigosDAO().buscarAmizades(Sessao.usuario.get());
-
-        for (Amigos meuAmigo : meusAmigos) {
+        meusAmigos = new AmigoDAO().buscarAmizades(Sessao.usuario.get());
+        System.out.println(meusAmigos.size());
+        for (Amigo meuAmigo : meusAmigos) {
             if (meuAmigo.isAceito()) {
                 if (meuAmigo.getId().getConvidado().equals(Sessao.usuario.get())) {
-                    amigos.add(meuAmigo.getId().getRemetente());
                     tiAmigos.getChildren().add(new TreeItem(meuAmigo.getId().getRemetente()));
                 } else {
                     tiAmigos.getChildren().add(new TreeItem(meuAmigo.getId().getConvidado()));
-                    amigos.add(meuAmigo.getId().getConvidado());
                 }
             } else if (meuAmigo.getId().getConvidado().equals(Sessao.usuario.get())) {
-
                 HBox hbSolicitacao = new HBox();
                 TreeItem solicitacao = new TreeItem(meuAmigo.getId().getRemetente());
                 Button btAceitarSolicitacao = new Button("Aceitar");
                 btAceitarSolicitacao.setOnAction((event) -> {
                     meuAmigo.setAceito(true);
-                    new AmigosDAO().editar(meuAmigo);
+                    new AmigoDAO().editar(meuAmigo);
                     inicializadorPainelAmigos();
                 });
-
                 Button btRecusarSolicitacao = new Button("Recusar");
                 btRecusarSolicitacao.setOnAction((event) -> {
                     meuAmigo.setDel(true);
-                    new AmigosDAO().editar(meuAmigo);
+                    new AmigoDAO().editar(meuAmigo);
                     inicializadorPainelAmigos();
                 });
-
                 hbSolicitacao.getChildren().add(btAceitarSolicitacao);
                 hbSolicitacao.getChildren().add(btRecusarSolicitacao);
                 hbSolicitacao.setSpacing(20d);
                 solicitacao.setGraphic(hbSolicitacao);
-                pendentes.add(meuAmigo.getId().getRemetente());
                 tiPendentes.getChildren().add(solicitacao);
-
             } else {
-                pendentes.add(meuAmigo.getId().getConvidado());
                 tiPendentes.getChildren().add(new TreeItem(meuAmigo.getId().getConvidado()));
             }
 

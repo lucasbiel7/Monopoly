@@ -5,10 +5,10 @@
  */
 package br.com.Monopoly.control;
 
-import br.com.Monopoly.control.dao.AmigosDAO;
+import br.com.Monopoly.control.dao.AmigoDAO;
 import br.com.Monopoly.control.dao.PermissaoDAO;
 import br.com.Monopoly.model.Funcionalidade;
-import br.com.Monopoly.model.entity.Amigos;
+import br.com.Monopoly.model.entity.Amigo;
 import br.com.Monopoly.model.entity.Permissao;
 import br.com.Monopoly.model.entity.Usuario;
 import java.util.ArrayList;
@@ -45,10 +45,10 @@ public class Sessao {
     }
 
     public static List<Usuario> meusAmigos() {
-        List<Amigos> minhasAmizades = new AmigosDAO().buscarAmizades(usuario.get());
+        List<Amigo> minhasAmizades = new AmigoDAO().buscarAmizades(usuario.get());
         List<Usuario> listaDeAmigos = new ArrayList<>();
 
-        for (Amigos meuAmigo : minhasAmizades) {
+        for (Amigo meuAmigo : minhasAmizades) {
             if (meuAmigo.getId().getConvidado().equals(Sessao.usuario.get())) {
                 listaDeAmigos.add(meuAmigo.getId().getRemetente());
             } else {

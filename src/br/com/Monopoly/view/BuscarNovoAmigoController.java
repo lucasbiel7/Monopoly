@@ -8,9 +8,9 @@ package br.com.Monopoly.view;
 import br.com.Monopoly.control.Alerta;
 import br.com.Monopoly.control.GerenciadorDeImagem;
 import br.com.Monopoly.control.Sessao;
-import br.com.Monopoly.control.dao.AmigosDAO;
+import br.com.Monopoly.control.dao.AmigoDAO;
 import br.com.Monopoly.control.dao.UsuarioDAO;
-import br.com.Monopoly.model.entity.Amigos;
+import br.com.Monopoly.model.entity.Amigo;
 import br.com.Monopoly.model.entity.Usuario;
 import java.net.URL;
 import java.util.ArrayList;
@@ -100,9 +100,9 @@ public class BuscarNovoAmigoController implements Initializable {
                             lbNome.setPrefWidth(200d);
                             Button btAdd = new Button("Solicitar Amizidade");
                             btAdd.setOnAction((event)->{
-                                Amigos novaAmizadade = new Amigos(new Amigos.AmigosID(Sessao.usuario.get(), item));
+                                Amigo novaAmizadade = new Amigo(new Amigo.AmigosID(Sessao.usuario.get(), item));
                                 novaAmizadade.setAceito(false);
-                                new AmigosDAO().salvar(novaAmizadade);
+                                new AmigoDAO().salvar(novaAmizadade);
                                 Alerta.criarAlert(Alerta.tipoAlerta.CONCLUIDO).show();
                             });
                             hbGrade.getChildren().add(ivFoto);

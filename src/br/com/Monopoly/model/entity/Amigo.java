@@ -23,7 +23,7 @@ import org.hibernate.annotations.SQLDelete;
  */
 @SQLDelete(sql = "update Amigos set del=true where id=?")
 @Entity
-public class Amigos implements Serializable {
+public class Amigo implements Serializable {
 
     @Embeddable
     public static class AmigosID implements Serializable {
@@ -105,10 +105,10 @@ public class Amigos implements Serializable {
         this.del = del;
     }
 
-    public Amigos() {
+    public Amigo() {
     }
 
-    public Amigos(AmigosID id) {
+    public Amigo(AmigosID id) {
         this.id = id;
     }
 
@@ -154,7 +154,7 @@ public class Amigos implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Amigos other = (Amigos) obj;
+        final Amigo other = (Amigo) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
