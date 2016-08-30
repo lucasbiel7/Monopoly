@@ -29,4 +29,10 @@ public class JogadorDAO extends GenericaDAO<Jogador> {
         return entitys;
     }
 
+    public Jogador pegarPorSalaNumero(Sala sala, int numero) {
+        entity = (Jogador) criteria.add(Restrictions.eq("id.sala", sala)).add(Restrictions.eq("numero", numero)).add(Restrictions.eq("del", false)).uniqueResult();
+        closeSession();
+        return entity;
+    }
+
 }

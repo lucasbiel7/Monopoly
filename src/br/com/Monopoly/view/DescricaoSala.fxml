@@ -16,7 +16,7 @@
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <Button layoutX="220.0" layoutY="14.0" mnemonicParsing="false">
+      <Button layoutX="220.0" layoutY="14.0" mnemonicParsing="false" onAction="#btEntrarActionEvent">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
