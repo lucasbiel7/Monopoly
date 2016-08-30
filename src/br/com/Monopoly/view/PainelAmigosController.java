@@ -106,7 +106,7 @@ public class PainelAmigosController implements Initializable {
     }
 
     public void Atualizar() {
-
+        inicializadorPainelAmigos();
     }
 
     public void inicializadorPainelAmigos() {
