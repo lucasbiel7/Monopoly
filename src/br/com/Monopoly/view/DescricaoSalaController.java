@@ -67,11 +67,8 @@ public class DescricaoSalaController implements Initializable {
         Platform.runLater(() -> {
             sala = (Sala) apPrincipal.getUserData();
             carregarSala();
-            atualizarPessoas = new Timeline(new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    atualizarSala();
-                }
+            atualizarPessoas = new Timeline(new KeyFrame(Duration.seconds(3), (ActionEvent event) -> {
+                atualizarSala();
             }));
             atualizarPessoas.setCycleCount(Timeline.INDEFINITE);
             atualizarPessoas.play();
@@ -103,7 +100,7 @@ public class DescricaoSalaController implements Initializable {
                         jogador.setNumero(pessoas.indexOf(circle));
                         jogador.setCriador(new JogadorDAO().pegarPorSala(sala).isEmpty());
                         if (new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.get(), sala)) == null) {
-                            
+
                             new JogadorDAO().salvar(jogador);
                         } else {
                             new JogadorDAO().editar(jogador);
@@ -131,6 +128,14 @@ public class DescricaoSalaController implements Initializable {
                 Circle circle = pessoas.get(jogador.getNumero());
                 circle.setFill(new ImagePattern(GerenciadorDeImagem.carregarImage(jogador.getId().getUsuario().getFoto())));
                 circle.setUserData(jogador);
+            }
+        }
+        for (int i = 0; i < sala.getCapacidade(); i++) {
+            Jogador jogador = new JogadorDAO().pegarPorSalaNumero(sala, i);
+            if (jogador == null) {
+                Circle circle = pessoas.get(i);
+                circle.setFill(new ImagePattern(Sessao.fotoPadrao));
+                circle.setUserData(null);
             }
         }
     }
