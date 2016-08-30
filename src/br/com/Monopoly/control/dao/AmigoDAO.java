@@ -22,4 +22,21 @@ public class AmigoDAO extends GenericaDAO<Amigo> {
         closeSession();
         return entitys;
     }
+    
+    public List<Amigo> buscarAmigosAceitos(Usuario user){
+        entitys = criteria.add(Restrictions.and(Restrictions.or(Restrictions.eq("id.remetente", user),Restrictions.eq("id.convidado", user)),Restrictions.eq("aceito", true),Restrictions.eq("del", false))).list();
+        closeSession();
+        return entitys;
+    }
+    public List<Amigo> buscarAmigosPendentes(Usuario user){
+        entitys = criteria.add(Restrictions.and(Restrictions.or(Restrictions.eq("id.remetente", user),Restrictions.eq("id.convidado", user)),Restrictions.eq("aceito", false),Restrictions.eq("del", false))).list();
+        closeSession();
+        return entitys;
+    }
+    
+    public List<Amigo> buscarAmizadesRecusadas(Usuario user){
+        entitys = criteria.add(Restrictions.and(Restrictions.or(Restrictions.eq("id.remetente", user),Restrictions.eq("id.convidado", user)),Restrictions.eq("aceito", false),Restrictions.eq("del", true))).list();
+        closeSession();
+        return entitys;
+    }
 }
