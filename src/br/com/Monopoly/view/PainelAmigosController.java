@@ -80,6 +80,7 @@ public class PainelAmigosController implements Initializable {
         tlAtualizaAmigos = new Timeline(new KeyFrame(Duration.seconds(15), (ActionEvent event) -> {
             atualizar();
         }));
+        atualizar();
         tlAtualizaAmigos.setCycleCount(Timeline.INDEFINITE);
         tlAtualizaAmigos.play();
         tvAmigos.setCellFactory(new Callback<TreeView<Object>, TreeCell<Object>>() {
