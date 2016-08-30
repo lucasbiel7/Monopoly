@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="apPrincipal" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="br.com.Monopoly.view.ConfiguracaoSalaController">
+    <stylesheets>
+        <URL value="@estilo.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="49.0" prefWidth="254.0" text="Configuração" textFill="#fffafa">
+         <font>
+            <Font name="System Bold Italic" size="33.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
