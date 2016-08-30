@@ -5,6 +5,7 @@
  */
 package br.com.Monopoly.view;
 
+import br.com.Monopoly.control.Alerta;
 import br.com.Monopoly.control.GerenciadorDeImagem;
 import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.Sessao;
@@ -26,8 +27,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
@@ -86,10 +87,29 @@ public class DescricaoSalaController implements Initializable {
     }
 
     private void carregarSala() {
-        Image image = GerenciadorDeImagem.carregarImage("semusuario.png");
         for (int i = 0; i < sala.getCapacidade(); i++) {
-            Circle circle = new Circle(20);
-            circle.setFill(new ImagePattern(image));
+            final Circle circle = new Circle(20);
+            circle.setFill(new ImagePattern(Sessao.fotoPadrao));
+            circle.setOnMouseReleased(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    if (circle.getUserData() instanceof Jogador) {
+                        Alerta.messagemErro("Não é possível entrar nesse espaço pois já existe um jogador!");
+                    } else {
+                        Jogador jogador = new Jogador();
+                        jogador.setId(new Jogador.JogadorID(Sessao.usuario.get(), sala));
+                        jogador.setDel(false);
+                        jogador.setNumero(pessoas.indexOf(circle));
+
+                        if (new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.get(), sala)) == null) {
+                            new JogadorDAO().salvar(jogador);
+                        } else {
+                            new JogadorDAO().editar(jogador);
+                        }
+                        GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Sala", sala));
+                    }
+                }
+            });
             gpPessoas.add(circle, i % 5, i / 5);
             pessoas.add(circle);
         }
@@ -121,6 +141,7 @@ public class DescricaoSalaController implements Initializable {
         for (int i = 0; i < sala.getCapacidade(); i++) {
             if (new JogadorDAO().pegarPorSalaNumero(sala, i) == null) {
                 jogador.setNumero(i);
+                break;
             }
         }
         if (new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.get(), sala)) == null) {

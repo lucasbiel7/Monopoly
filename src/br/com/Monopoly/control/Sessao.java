@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -24,6 +25,11 @@ public class Sessao {
 
     public static ScrollPane container;
     public static SimpleObjectProperty<Usuario> usuario = new SimpleObjectProperty<>();
+    public static final Image fotoPadrao;
+
+    static {
+        fotoPadrao = GerenciadorDeImagem.carregarImage("semusuario.png");
+    }
 
     public static boolean verificarPermissao(Funcionalidade func) {
         if (usuario.getValue() != null) {
@@ -37,19 +43,19 @@ public class Sessao {
             return false;
         }
     }
-    
-    public static List<Usuario> meusAmigos(){
+
+    public static List<Usuario> meusAmigos() {
         List<Amigos> minhasAmizades = new AmigosDAO().buscarAmizades(usuario.get());
         List<Usuario> listaDeAmigos = new ArrayList<>();
-        
+
         for (Amigos meuAmigo : minhasAmizades) {
-                if (meuAmigo.getId().getConvidado().equals(Sessao.usuario.get())) {
-                    listaDeAmigos.add(meuAmigo.getId().getRemetente());
-                } else {
-                    listaDeAmigos.add(meuAmigo.getId().getConvidado());
-                }
+            if (meuAmigo.getId().getConvidado().equals(Sessao.usuario.get())) {
+                listaDeAmigos.add(meuAmigo.getId().getRemetente());
+            } else {
+                listaDeAmigos.add(meuAmigo.getId().getConvidado());
+            }
         }
-        
+
         return listaDeAmigos;
     }
 }

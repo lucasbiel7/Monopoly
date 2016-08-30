@@ -52,6 +52,11 @@ public class Alerta {
         return alert.showAndWait().orElse(ButtonType.NO).equals(ButtonType.YES);
     }
 
+    public static void messagemErro(String msg) {
+        Alert alert = new Alert(AlertType.ERROR, msg);
+        alert.show();
+    }
+
     public enum tipoAlerta {
         ERROLOGIN(),
         CAMPOVAZIO(),

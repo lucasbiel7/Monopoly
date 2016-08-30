@@ -25,7 +25,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -98,11 +97,10 @@ public class SalaController implements Initializable {
 
     private void carregarEspacoJogadores() {
         painelJogadores = new ArrayList<>();
-        Image image = GerenciadorDeImagem.carregarImage("semusuario.png");
         for (int i = 0; i < sala.getCapacidade(); i++) {
             Label label = new Label();
             Circle circle = new Circle(50);
-            circle.setFill(new ImagePattern(image));
+            circle.setFill(new ImagePattern(Sessao.fotoPadrao));
             label.setGraphic(circle);
             label.setText("Sem usuário");
             label.setWrapText(true);
@@ -139,4 +137,5 @@ public class SalaController implements Initializable {
             }
         }
     }
+
 }
