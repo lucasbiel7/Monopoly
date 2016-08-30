@@ -64,8 +64,28 @@ public class SalaController implements Initializable {
             jogadores = new ArrayList<>();
             carregarEspacoJogadores();
             atualizarSala();
+            Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Jogador jogador = new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.getValue(), sala));
+                    if (new JogadorDAO().pegarPorSala(sala).size() == 1) {
+                        new JogadorDAO().deletar(jogador);
+                        new SalaDAO().deletar(sala);
+                    } else {
+                        new JogadorDAO().deletar(jogador);
+                        if (jogador.isCriador()) {
+                            List<Jogador> jogadores = new JogadorDAO().pegarPorSala(sala);
+                            if (!jogadores.isEmpty()) {
+                                jogadores.get(0).setCriador(true);
+                                new JogadorDAO().editar(jogadores.get(0));
+                            }
+                        }
+                        GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Inicio"));
+                    }
+                    atualizarSala.stop();
+                }
+            }));
         });
-
     }
 
     @FXML
@@ -87,12 +107,22 @@ public class SalaController implements Initializable {
                     + "porque você é o ultimo membro!")) {
                 new JogadorDAO().deletar(jogador);
                 new SalaDAO().deletar(sala);
+                atualizarSala.stop();
+                GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Inicio"));
             }
         } else {
             new JogadorDAO().deletar(jogador);
+            if (jogador.isCriador()) {
+                List<Jogador> jogadores = new JogadorDAO().pegarPorSala(sala);
+                if (!jogadores.isEmpty()) {
+                    jogadores.get(0).setCriador(true);
+                    new JogadorDAO().editar(jogadores.get(0));
+                }
+            }
             atualizarSala.stop();
             GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Inicio"));
         }
+
     }
 
     private void carregarEspacoJogadores() {

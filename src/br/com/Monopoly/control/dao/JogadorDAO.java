@@ -9,6 +9,7 @@ import br.com.Monopoly.model.GenericaDAO;
 import br.com.Monopoly.model.entity.Jogador;
 import br.com.Monopoly.model.entity.Sala;
 import java.util.List;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -24,7 +25,7 @@ public class JogadorDAO extends GenericaDAO<Jogador> {
     }
 
     public List<Jogador> pegarPorSala(Sala sala) {
-        entitys = criteria.add(Restrictions.eq("id.sala", sala)).add(Restrictions.eq("del", false)).list();
+        entitys = criteria.add(Restrictions.eq("id.sala", sala)).add(Restrictions.eq("del", false)).addOrder(Order.asc("numero")).list();
         closeSession();
         return entitys;
     }

@@ -83,6 +83,7 @@ public class DescricaoSalaController implements Initializable {
                     atualizarPessoas.stop();
                 }
             });
+
         });
     }
 
@@ -100,7 +101,7 @@ public class DescricaoSalaController implements Initializable {
                         jogador.setId(new Jogador.JogadorID(Sessao.usuario.get(), sala));
                         jogador.setDel(false);
                         jogador.setNumero(pessoas.indexOf(circle));
-
+                        jogador.setCriador(new JogadorDAO().pegarPorSala(sala).isEmpty());
                         if (new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.get(), sala)) == null) {
                             new JogadorDAO().salvar(jogador);
                         } else {
@@ -144,6 +145,7 @@ public class DescricaoSalaController implements Initializable {
                 break;
             }
         }
+        jogador.setCriador(new JogadorDAO().pegarPorSala(sala).isEmpty());
         if (new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.get(), sala)) == null) {
             new JogadorDAO().salvar(jogador);
         } else {

@@ -7,11 +7,13 @@ package br.com.Monopoly.view;
 
 import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.Sessao;
+import br.com.Monopoly.model.Funcionalidade;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +32,8 @@ public class PrincipalController implements Initializable {
     private ScrollPane spContainer;
     @FXML
     private ImageView ivIcon;
+    @FXML
+    private MenuItem miNovo;
 
     /**
      * Initializes the controller class.
@@ -38,6 +42,7 @@ public class PrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         GerenciadorDeJanelas.inserirPainel(spContainer, GerenciadorDeJanelas.carregarComponente("Inicio"));
         Sessao.container = spContainer;
+        miNovo.setDisable(!Sessao.verificarPermissao(Funcionalidade.CADASTRAR));
     }
 
     @FXML
@@ -53,5 +58,10 @@ public class PrincipalController implements Initializable {
     @FXML
     public void miPerfilActionEvent(ActionEvent actionEvent) {
         GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("GerenciarPerfil", Sessao.usuario.get()), "Perfil - Monopoly Deal", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNRESIZABLE).showAndWait();
+    }
+
+    @FXML
+    public void miNovoUsuarioActionEvent(ActionEvent actionEvent) {
+        GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("GerenciarPerfil"), "Perfil - Monopoly Deal", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNRESIZABLE).showAndWait();
     }
 }

@@ -48,12 +48,21 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (Sessao.usuario.getValue() != null) {
+                Usuario usuario = Sessao.usuario.getValue();
+                usuario.setOnline(false);
+                new UsuarioDAO().editar(usuario);
+            }
+        }));
     }
 
     @FXML
     void btSubmitEvent(ActionEvent event) {
         Usuario usuario = new UsuarioDAO().login(tfLogin.getText(), Seguranca.criptografar(pfSenha.getText()));
         if (usuario != null) {
+            usuario.setOnline(true);
+            new UsuarioDAO().editar(usuario);
             Sessao.usuario.setValue(usuario);
             ((Stage) apPrincipal.getScene().getWindow()).close();
             GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("Principal"), "Tela principal", GerenciadorDeJanelas.Tipo.MAXIMIZED, GerenciadorDeJanelas.Tipo.UNDECORATED).show();

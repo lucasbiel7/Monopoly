@@ -48,6 +48,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Perfil">
                   <items>
+                        <MenuItem fx:id="miNovo" mnemonicParsing="false" onAction="#miNovoUsuarioActionEvent" text="Novo" />
                     <MenuItem mnemonicParsing="false" onAction="#miPerfilActionEvent" text="Editar" />
                   </items>
                 </Menu>
