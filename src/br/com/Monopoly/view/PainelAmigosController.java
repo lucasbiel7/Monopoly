@@ -77,7 +77,7 @@ public class PainelAmigosController implements Initializable {
                 me = (Stage) apPrincipal.getScene().getWindow();
             }
         });
-        tlAtualizaAmigos = new Timeline(new KeyFrame(Duration.seconds(2), (ActionEvent event) -> {
+        tlAtualizaAmigos = new Timeline(new KeyFrame(Duration.seconds(15), (ActionEvent event) -> {
             atualizar();
         }));
         tlAtualizaAmigos.setCycleCount(Timeline.INDEFINITE);
@@ -100,10 +100,12 @@ public class PainelAmigosController implements Initializable {
                                 if (amigo != null) {
                                     if (amigo.isAceito()) {
                                         setText(usuario.getNome());
-                                        Circle circle = new Circle(5);
-                                        circle.setFill(usuario.isOnline() ? Color.GREEN : Color.RED);
-                                        setContentDisplay(ContentDisplay.LEFT);
-                                        setGraphic(circle);
+                                        if (usuario.isOnline()) {
+                                            Circle circle = new Circle(5);
+                                            circle.setFill(Color.GREEN);
+                                            setContentDisplay(ContentDisplay.LEFT);
+                                            setGraphic(circle);
+                                        }
                                     } else if (amigo.getId().getConvidado().equals(Sessao.usuario.get())) {
                                         HBox hbSolicitacao = new HBox();
                                         Button btAceitarSolicitacao = new Button("Aceitar");
