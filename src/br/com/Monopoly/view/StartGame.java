@@ -22,7 +22,7 @@ public class StartGame extends Application {
     public void start(Stage primaryStage) {
         //Desenvolvedor
 //        Sessao.usuario = new UsuarioDAO().login("master", "123");
-        Sessao.usuario.set(new UsuarioDAO().login("lucas2", Seguranca.criptografar("123")));
+        Sessao.usuario.set(new UsuarioDAO().login("lucas5", Seguranca.criptografar("123")));
         if(Sessao.usuario.getValue() == null){
             Sessao.usuario.set(new UsuarioDAO().login("s", Seguranca.criptografar("s")));
             if(Sessao.usuario.getValue() == null){
