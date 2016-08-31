@@ -93,7 +93,7 @@ public class SalaController implements Initializable {
 
     @FXML
     public void btConfiguracaoActionEvent(ActionEvent actionEvent) {
-        Stage stConfiguracao = GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("ConfiguracaoSala"), "Configuração de Sala", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNDECORATED, GerenciadorDeJanelas.Tipo.UNRESIZABLE);
+        Stage stConfiguracao = GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("ConfiguracaoSala",sala), "Configuração de Sala", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNDECORATED, GerenciadorDeJanelas.Tipo.UNRESIZABLE);
         stConfiguracao.initOwner(me);
         stConfiguracao.show();
     }
