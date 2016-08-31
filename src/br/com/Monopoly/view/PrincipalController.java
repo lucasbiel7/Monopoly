@@ -10,6 +10,7 @@ import br.com.Monopoly.control.Sessao;
 import br.com.Monopoly.model.Funcionalidade;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,6 +43,13 @@ public class PrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         GerenciadorDeJanelas.inserirPainel(spContainer, GerenciadorDeJanelas.carregarComponente("Inicio"));
         Sessao.container = spContainer;
+        Platform.runLater(() -> {
+            Stage stage = (Stage) apPrincipal.getScene().getWindow();
+            if (!stage.getIcons().isEmpty()) {
+                ivIcon.setImage(stage.getIcons().get(0));
+            }
+        });
+
         miNovo.setDisable(!Sessao.verificarPermissao(Funcionalidade.CADASTRAR));
     }
 

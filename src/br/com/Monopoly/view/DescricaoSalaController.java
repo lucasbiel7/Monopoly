@@ -22,7 +22,6 @@ import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -67,6 +66,7 @@ public class DescricaoSalaController implements Initializable {
         Platform.runLater(() -> {
             sala = (Sala) apPrincipal.getUserData();
             carregarSala();
+            atualizarSala();
             atualizarPessoas = new Timeline(new KeyFrame(Duration.seconds(3), (ActionEvent event) -> {
                 atualizarSala();
             }));
@@ -80,7 +80,6 @@ public class DescricaoSalaController implements Initializable {
                     atualizarPessoas.stop();
                 }
             });
-
         });
     }
 
@@ -88,25 +87,22 @@ public class DescricaoSalaController implements Initializable {
         for (int i = 0; i < sala.getCapacidade(); i++) {
             final Circle circle = new Circle(20);
             circle.setFill(new ImagePattern(Sessao.fotoPadrao));
-            circle.setOnMouseReleased(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    if (circle.getUserData() instanceof Jogador) {
-                        Alerta.messagemErro("Não é possível entrar nesse espaço pois já existe um jogador!");
-                    } else {
-                        Jogador jogador = new Jogador();
-                        jogador.setId(new Jogador.JogadorID(Sessao.usuario.get(), sala));
-                        jogador.setDel(false);
-                        jogador.setNumero(pessoas.indexOf(circle));
-                        jogador.setCriador(new JogadorDAO().pegarPorSala(sala).isEmpty());
-                        if (new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.get(), sala)) == null) {
+            circle.setOnMouseReleased((MouseEvent event) -> {
+                if (circle.getUserData() instanceof Jogador) {
+                    Alerta.messagemErro("Não é possível entrar nesse espaço pois já existe um jogador!");
+                } else {
+                    Jogador jogador = new Jogador();
+                    jogador.setId(new Jogador.JogadorID(Sessao.usuario.get(), sala));
+                    jogador.setDel(false);
+                    jogador.setNumero(pessoas.indexOf(circle));
+                    jogador.setCriador(new JogadorDAO().pegarPorSala(sala).isEmpty());
+                    if (new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.get(), sala)) == null) {
 
-                            new JogadorDAO().salvar(jogador);
-                        } else {
-                            new JogadorDAO().editar(jogador);
-                        }
-                        GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Sala", sala));
+                        new JogadorDAO().salvar(jogador);
+                    } else {
+                        new JogadorDAO().editar(jogador);
                     }
+                    GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Sala", sala));
                 }
             });
             gpPessoas.add(circle, i % 5, i / 5);

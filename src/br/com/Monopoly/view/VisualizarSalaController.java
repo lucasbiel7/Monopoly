@@ -18,9 +18,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.FlowPane;
 
 /**
  * FXML Controller class
@@ -32,13 +33,13 @@ public class VisualizarSalaController implements Initializable {
     @FXML
     private AnchorPane apPrincipal;
     @FXML
-    private GridPane gpSalas;
+    private FlowPane fpSalas;
     @FXML
     private Pagination pgSalas;
     private List<Sala> salas;
     private Timeline carregarSalas;
-    private final int linha = 3;
-    private final int coluna = 3;
+    private int linha = 3;
+    private int coluna = 3;
 
     /**
      * Initializes the controller class.
@@ -55,6 +56,13 @@ public class VisualizarSalaController implements Initializable {
                 inserirSalas(salas.subList(inicio, fim > salas.size() ? salas.size() : fim));
             }
         });
+        fpSalas.boundsInParentProperty().addListener(new ChangeListener<Bounds>() {
+            @Override
+            public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
+                coluna=(int) ((newValue.getWidth()-10)/275);
+                linha=(int) ((newValue.getHeight()-10)/130);
+            }
+        });
     }
 
     @FXML
@@ -68,21 +76,13 @@ public class VisualizarSalaController implements Initializable {
         pgSalas.setPageCount(pages);
         int inicio = pgSalas.getCurrentPageIndex() * (linha * coluna);
         int fim = pgSalas.getCurrentPageIndex() * (linha * coluna) + 9;
-        System.out.println(pgSalas.getCurrentPageIndex());
         inserirSalas(salas.subList(inicio, fim > salas.size() ? salas.size() : fim));
     }
 
     private void inserirSalas(List<Sala> salas) {
-        gpSalas.getChildren().clear();
-        int linha = 0;
-        int coluna = 0;
+        fpSalas.getChildren().clear();
         for (Sala sala : salas) {
-            gpSalas.add(GerenciadorDeJanelas.carregarComponente("DescricaoSala", sala), coluna, linha);
-            coluna++;
-            if (coluna >= this.coluna) {
-                coluna = 0;
-                linha++;
-            }
+            fpSalas.getChildren().add(GerenciadorDeJanelas.carregarComponente("DescricaoSala", sala));
         }
     }
 }

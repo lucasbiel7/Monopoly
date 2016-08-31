@@ -62,40 +62,37 @@ public class SalaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Platform.runLater(() -> {
             me = (Stage) apPrincipal.getScene().getWindow();
-
             sala = (Sala) apPrincipal.getUserData();
             jogadores = new ArrayList<>();
             carregarEspacoJogadores();
             atualizarSala();
-            Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Jogador jogador = new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.getValue(), sala));
-                    if (new JogadorDAO().pegarPorSala(sala).size() == 1) {
-                        new JogadorDAO().deletar(jogador);
-                        new SalaDAO().deletar(sala);
-                    } else {
-                        new JogadorDAO().deletar(jogador);
-                        if (jogador.isCriador()) {
-                            List<Jogador> jogadores = new JogadorDAO().pegarPorSala(sala);
-                            if (!jogadores.isEmpty()) {
-                                jogadores.get(0).setCriador(true);
-                                new JogadorDAO().editar(jogadores.get(0));
-                            }
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                Jogador jogador = new JogadorDAO().buscarPorID(new Jogador.JogadorID(Sessao.usuario.getValue(), sala));
+                if (new JogadorDAO().pegarPorSala(sala).size() == 1) {
+                    new JogadorDAO().deletar(jogador);
+                    new SalaDAO().deletar(sala);
+                } else {
+                    new JogadorDAO().deletar(jogador);
+                    if (jogador.isCriador()) {
+                        List<Jogador> jogadores1 = new JogadorDAO().pegarPorSala(sala);
+                        if (!jogadores1.isEmpty()) {
+                            jogadores1.get(0).setCriador(true);
+                            new JogadorDAO().editar(jogadores1.get(0));
                         }
-                        GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Inicio"));
                     }
-                    atualizarSala.stop();
+                    GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Inicio"));
                 }
+                atualizarSala.stop();
             }));
         });
     }
 
     @FXML
     public void btConfiguracaoActionEvent(ActionEvent actionEvent) {
-        Stage stConfiguracao = GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("ConfiguracaoSala",sala), "Configuração de Sala", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNDECORATED, GerenciadorDeJanelas.Tipo.UNRESIZABLE);
+        Stage stConfiguracao = GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("ConfiguracaoSala", sala), "Configuração de Sala", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNDECORATED, GerenciadorDeJanelas.Tipo.UNRESIZABLE);
         stConfiguracao.initOwner(me);
         stConfiguracao.show();
+        carregarEspacoJogadores();
     }
 
     @FXML
@@ -132,6 +129,7 @@ public class SalaController implements Initializable {
 
     private void carregarEspacoJogadores() {
         painelJogadores = new ArrayList<>();
+        gpUsuarios.getChildren().clear();
         for (int i = 0; i < sala.getCapacidade(); i++) {
             Label label = new Label();
             Circle circle = new Circle(50);

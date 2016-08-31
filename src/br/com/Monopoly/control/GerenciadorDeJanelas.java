@@ -55,6 +55,7 @@ public class GerenciadorDeJanelas {
         Scene scene = new Scene(componente);
         stage.setScene(scene);
         stage.setTitle(title);
+        stage.getIcons().add(GerenciadorDeImagem.carregarImage("monopoly-deal-gameinfo-logo_152103.png"));
         for (Tipo tipo : tipos) {
             switch (tipo) {
                 case EXIT_ON_CLOSE:
