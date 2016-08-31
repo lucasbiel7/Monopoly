@@ -30,6 +30,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -51,7 +52,7 @@ public class SalaController implements Initializable {
     private Sala sala;
     private List<Label> painelJogadores;
     private List<Jogador> jogadores;
-
+private Stage me;
     private Timeline atualizarSala;
 
     /**
@@ -60,6 +61,8 @@ public class SalaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Platform.runLater(() -> {
+            me = (Stage) apPrincipal.getScene().getWindow();
+            
             sala = (Sala) apPrincipal.getUserData();
             jogadores = new ArrayList<>();
             carregarEspacoJogadores();
@@ -90,7 +93,9 @@ public class SalaController implements Initializable {
 
     @FXML
     public void btConfiguracaoActionEvent(ActionEvent actionEvent) {
-
+            Stage stConfiguracao = GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("ConfiguracaoSala"), "Configuração de Sala", GerenciadorDeJanelas.Tipo.MODAL,GerenciadorDeJanelas.Tipo.UNDECORATED,GerenciadorDeJanelas.Tipo.UNRESIZABLE);
+            stConfiguracao.initOwner(me);
+            stConfiguracao.show();
     }
 
     @FXML
