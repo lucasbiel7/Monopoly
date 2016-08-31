@@ -68,7 +68,7 @@ public class GerenciadorDeJanelas {
                     stage.setMaximized(true);
                     break;
                 case MODAL:
-                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.initModality(Modality.APPLICATION_MODAL);
                     break;
                 case UNDECORATED:
                     stage.initStyle(StageStyle.UNDECORATED);

@@ -91,7 +91,7 @@ public class SalaController implements Initializable {
     public void btConfiguracaoActionEvent(ActionEvent actionEvent) {
         Stage stConfiguracao = GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("ConfiguracaoSala", sala), "Configuração de Sala", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNDECORATED, GerenciadorDeJanelas.Tipo.UNRESIZABLE);
         stConfiguracao.initOwner(me);
-        stConfiguracao.show();
+        stConfiguracao.showAndWait();
         carregarEspacoJogadores();
     }
 

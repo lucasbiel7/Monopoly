@@ -10,6 +10,11 @@
             <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/StartGame.java</file>
             <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/model/entity/Jogador.java</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/DescricaoSalaController.java</file>
+            <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/PrincipalController.java</file>
+            <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/control/AcessoBanco.java</file>
+            <file>file:/C:/Users/OCTI-Lucas/Documents/NetBeansProjects/Monopoly/src/br/com/Monopoly/view/VisualizarSalaController.java</file>
+        </group>
     </open-files>
 </project-private>

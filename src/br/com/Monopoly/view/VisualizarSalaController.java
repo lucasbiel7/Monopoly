@@ -59,8 +59,9 @@ public class VisualizarSalaController implements Initializable {
         fpSalas.boundsInParentProperty().addListener(new ChangeListener<Bounds>() {
             @Override
             public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
-                coluna=(int) ((newValue.getWidth()-10)/275);
-                linha=(int) ((newValue.getHeight()-10)/130);
+//                coluna = (int) ((newValue.getWidth() - 10) / 275);
+//                linha = (int) ((newValue.getHeight() - 10) / 130);
+//                carregarSalas();
             }
         });
     }
