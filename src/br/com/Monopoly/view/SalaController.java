@@ -39,7 +39,6 @@ import javafx.util.Duration;
  * @author OCTI-Lucas
  */
 public class SalaController implements Initializable {
-
     @FXML
     private AnchorPane apPrincipal;
     @FXML
@@ -97,7 +96,7 @@ public class SalaController implements Initializable {
 
     @FXML
     public void btComecarActionEvent(ActionEvent actionEvent) {
-
+        
     }
 
     @FXML

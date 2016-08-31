@@ -10,6 +10,7 @@ import br.com.Monopoly.control.GerenciadorDeImagem;
 import br.com.Monopoly.control.GerenciadorDeJanelas;
 import br.com.Monopoly.control.Sessao;
 import br.com.Monopoly.control.dao.JogadorDAO;
+import br.com.Monopoly.control.dao.SalaDAO;
 import br.com.Monopoly.model.entity.Jogador;
 import br.com.Monopoly.model.entity.Sala;
 import java.net.URL;
@@ -43,7 +44,6 @@ public class DescricaoSalaController implements Initializable {
 
     @FXML
     private AnchorPane apPrincipal;
-
     @FXML
     private GridPane gpPessoas;
     @FXML
@@ -55,7 +55,7 @@ public class DescricaoSalaController implements Initializable {
 
     private Timeline atualizarPessoas;
     private List<Circle> pessoas;
-
+    
     /**
      * Initializes the controller class.
      */
@@ -84,6 +84,8 @@ public class DescricaoSalaController implements Initializable {
     }
 
     private void carregarSala() {
+        gpPessoas.getChildren().clear();
+        pessoas.clear();
         for (int i = 0; i < sala.getCapacidade(); i++) {
             final Circle circle = new Circle(20);
             circle.setFill(new ImagePattern(Sessao.fotoPadrao));
@@ -134,6 +136,11 @@ public class DescricaoSalaController implements Initializable {
                 circle.setUserData(null);
             }
         }
+        Sala salaBanco = new SalaDAO().buscarPorID(sala.getId());
+        if (salaBanco.getCapacidade() != sala.getCapacidade()) {
+            sala = salaBanco;
+            carregarSala();
+        }
     }
 
     @FXML
@@ -155,4 +162,5 @@ public class DescricaoSalaController implements Initializable {
         }
         GerenciadorDeJanelas.inserirPainel(Sessao.container, GerenciadorDeJanelas.carregarComponente("Sala", sala));
     }
+    
 }

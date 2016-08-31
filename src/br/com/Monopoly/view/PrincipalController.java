@@ -26,7 +26,6 @@ import javafx.stage.Stage;
  * @author OCTI-Lucas
  */
 public class PrincipalController implements Initializable {
-
     @FXML
     private AnchorPane apPrincipal;
     @FXML
@@ -49,7 +48,6 @@ public class PrincipalController implements Initializable {
                 ivIcon.setImage(stage.getIcons().get(0));
             }
         });
-
         miNovo.setDisable(!Sessao.verificarPermissao(Funcionalidade.CADASTRAR));
     }
 
