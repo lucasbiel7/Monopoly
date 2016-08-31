@@ -17,9 +17,12 @@ import java.util.stream.Collectors;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TreeCell;
@@ -31,7 +34,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.Duration;
 
 /**
@@ -77,6 +79,13 @@ public class PainelAmigosController implements Initializable {
             @Override
             public void run() {
                 me = (Stage) apPrincipal.getScene().getWindow();
+                Sessao.container.contentProperty().addListener(new ChangeListener<Node>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Node> observable, Node oldValue, Node newValue) {
+                        System.out.println(newValue);
+                        tlAtualizaAmigos.stop();
+                    }
+                });
             }
         });
         tlAtualizaAmigos = new Timeline(new KeyFrame(Duration.seconds(15), (ActionEvent event) -> {
@@ -85,58 +94,53 @@ public class PainelAmigosController implements Initializable {
         atualizar();
         tlAtualizaAmigos.setCycleCount(Timeline.INDEFINITE);
         tlAtualizaAmigos.play();
-        tvAmigos.setCellFactory(new Callback<TreeView<Object>, TreeCell<Object>>() {
+        tvAmigos.setCellFactory((TreeView<Object> param) -> new TreeCell<Object>() {
             @Override
-            public TreeCell<Object> call(TreeView<Object> param) {
-                return new TreeCell<Object>() {
-                    @Override
-                    protected void updateItem(Object item, boolean empty) {
-                        super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
-                        if (empty) {
+            protected void updateItem(Object item, boolean empty) {
+                super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
+                if (empty) {
+                    setText("");
+                    setGraphic(null);
+                } else {
+                    setText(item.toString());
+                    if (item instanceof Usuario) {
+                        Usuario usuario = (Usuario) item;
+                        Amigo amigo = new AmigoDAO().buscarAmizade(Sessao.usuario.get(), usuario);
+                        if (amigo != null) {
+                            if (amigo.isAceito()) {
+                                setText(usuario.getNome());
+                                if (usuario.isOnline()) {
+                                    Circle circle = new Circle(5);
+                                    circle.setFill(Color.GREEN);
+                                    setContentDisplay(ContentDisplay.LEFT);
+                                    setGraphic(circle);
+                                }
+                            } else if (amigo.getId().getConvidado().equals(Sessao.usuario.get())) {
+                                HBox hbSolicitacao = new HBox();
+                                Button btAceitarSolicitacao = new Button("Aceitar");
+                                btAceitarSolicitacao.setOnAction((event) -> {
+                                    amigo.setAceito(true);
+                                    new AmigoDAO().editar(amigo);
+                                    atualizar();
+                                });
+                                Button btRecusarSolicitacao = new Button("Recusar");
+                                btRecusarSolicitacao.setOnAction((event) -> {
+                                    amigo.setDel(true);
+                                    new AmigoDAO().editar(amigo);
+                                    atualizar();
+                                });
+                                hbSolicitacao.getChildren().add(btAceitarSolicitacao);
+                                hbSolicitacao.getChildren().add(btRecusarSolicitacao);
+                                hbSolicitacao.setSpacing(20d);
+                                setGraphic(hbSolicitacao);
+                                setContentDisplay(ContentDisplay.RIGHT);
+                            }
+                        } else {
                             setText("");
                             setGraphic(null);
-                        } else {
-                            setText(item.toString());
-                            if (item instanceof Usuario) {
-                                Usuario usuario = (Usuario) item;
-                                Amigo amigo = new AmigoDAO().buscarAmizade(Sessao.usuario.get(), usuario);
-                                if (amigo != null) {
-                                    if (amigo.isAceito()) {
-                                        setText(usuario.getNome());
-                                        if (usuario.isOnline()) {
-                                            Circle circle = new Circle(5);
-                                            circle.setFill(Color.GREEN);
-                                            setContentDisplay(ContentDisplay.LEFT);
-                                            setGraphic(circle);
-                                        }
-                                    } else if (amigo.getId().getConvidado().equals(Sessao.usuario.get())) {
-                                        HBox hbSolicitacao = new HBox();
-                                        Button btAceitarSolicitacao = new Button("Aceitar");
-                                        btAceitarSolicitacao.setOnAction((event) -> {
-                                            amigo.setAceito(true);
-                                            new AmigoDAO().editar(amigo);
-                                            atualizar();
-                                        });
-                                        Button btRecusarSolicitacao = new Button("Recusar");
-                                        btRecusarSolicitacao.setOnAction((event) -> {
-                                            amigo.setDel(true);
-                                            new AmigoDAO().editar(amigo);
-                                            atualizar();
-                                        });
-                                        hbSolicitacao.getChildren().add(btAceitarSolicitacao);
-                                        hbSolicitacao.getChildren().add(btRecusarSolicitacao);
-                                        hbSolicitacao.setSpacing(20d);
-                                        setGraphic(hbSolicitacao);
-                                        setContentDisplay(ContentDisplay.RIGHT);
-                                    }
-                                } else {
-                                    setText("");
-                                    setGraphic(null);
-                                }
-                            }
                         }
                     }
-                };
+                }
             }
         });
     }
