@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,12 +78,8 @@ public class PainelAmigosController implements Initializable {
             @Override
             public void run() {
                 me = (Stage) apPrincipal.getScene().getWindow();
-                Sessao.container.contentProperty().addListener(new ChangeListener<Node>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Node> observable, Node oldValue, Node newValue) {
-                        System.out.println(newValue);
-                        tlAtualizaAmigos.stop();
-                    }
+                Sessao.container.contentProperty().addListener((ObservableValue<? extends Node> observable, Node oldValue, Node newValue) -> {
+                    tlAtualizaAmigos.stop();
                 });
             }
         });

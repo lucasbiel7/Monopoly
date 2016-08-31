@@ -52,7 +52,7 @@ public class SalaController implements Initializable {
     private Sala sala;
     private List<Label> painelJogadores;
     private List<Jogador> jogadores;
-private Stage me;
+    private Stage me;
     private Timeline atualizarSala;
 
     /**
@@ -62,7 +62,7 @@ private Stage me;
     public void initialize(URL url, ResourceBundle rb) {
         Platform.runLater(() -> {
             me = (Stage) apPrincipal.getScene().getWindow();
-            
+
             sala = (Sala) apPrincipal.getUserData();
             jogadores = new ArrayList<>();
             carregarEspacoJogadores();
@@ -93,9 +93,9 @@ private Stage me;
 
     @FXML
     public void btConfiguracaoActionEvent(ActionEvent actionEvent) {
-            Stage stConfiguracao = GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("ConfiguracaoSala"), "Configuração de Sala", GerenciadorDeJanelas.Tipo.MODAL,GerenciadorDeJanelas.Tipo.UNDECORATED,GerenciadorDeJanelas.Tipo.UNRESIZABLE);
-            stConfiguracao.initOwner(me);
-            stConfiguracao.show();
+        Stage stConfiguracao = GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("ConfiguracaoSala"), "Configuração de Sala", GerenciadorDeJanelas.Tipo.MODAL, GerenciadorDeJanelas.Tipo.UNDECORATED, GerenciadorDeJanelas.Tipo.UNRESIZABLE);
+        stConfiguracao.initOwner(me);
+        stConfiguracao.show();
     }
 
     @FXML
@@ -143,6 +143,7 @@ private Stage me;
             label.setContentDisplay(ContentDisplay.TOP);
             gpUsuarios.add(label, i % 5, i / 5);
         }
+
     }
 
     private void atualizarSala() {
@@ -166,9 +167,19 @@ private Stage me;
             if (!jogador.equals(painelJogadores.get(jogador.getNumero()).getUserData())) {
                 Label label = painelJogadores.get(jogador.getNumero());
                 label.setText(jogador.getId().getUsuario().getNome());
-                Circle imageView = (Circle) label.getGraphic();
-                imageView.setFill(new ImagePattern(GerenciadorDeImagem.carregarImage(jogador.getId().getUsuario().getFoto())));
+                Circle circle = (Circle) label.getGraphic();
+                circle.setFill(new ImagePattern(GerenciadorDeImagem.carregarImage(jogador.getId().getUsuario().getFoto())));
                 label.setUserData(jogador);
+            }
+        }
+        for (int i = 0; i < sala.getCapacidade(); i++) {
+            Jogador jogador = new JogadorDAO().pegarPorSalaNumero(sala, i);
+            if (jogador == null) {
+                Label label = painelJogadores.get(i);
+                Circle circle = (Circle) label.getGraphic();
+                circle.setFill(new ImagePattern(Sessao.fotoPadrao));
+                label.setText("Sem usuário");
+                label.setUserData(null);
             }
         }
     }
