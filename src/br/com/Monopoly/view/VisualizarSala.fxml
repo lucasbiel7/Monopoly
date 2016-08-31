@@ -23,11 +23,11 @@
             </ImageView>
          </graphic>
       </Button>
-      <ScrollPane layoutX="14.0" layoutY="47.0" prefHeight="312.0" prefWidth="600.0" styleClass="panel-transparent" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="47.0" prefHeight="312.0" prefWidth="600.0" styleClass="panel-transparent" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
          <content>
             <FlowPane fx:id="fpSalas" hgap="15.0" prefHeight="200.0" prefWidth="200.0" vgap="15.0" />
          </content>
       </ScrollPane>
-      <Pagination fx:id="pgSalas" layoutX="3.0" layoutY="350.0" pageCount="1" prefHeight="45.0" prefWidth="592.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+      <Pagination fx:id="pgSalas" layoutX="3.0" layoutY="350.0" pageCount="1" prefHeight="24.0" prefWidth="590.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
    </children>
 </AnchorPane>
