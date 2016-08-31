@@ -13,7 +13,6 @@ import br.com.Monopoly.model.entity.Usuario;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -52,19 +51,22 @@ public class PainelAmigosController implements Initializable {
     @FXML
     private Button btAddAmigos;
 //Atributos da classe    
-    private TreeItem tiAmigos;
-    private TreeItem tiPendentes;
+    private TreeItem<Object> tiRoot;
+    private TreeItem<Object> tiAmigos;
+    private TreeItem<Object> tiPendentes;
     private Stage me;
     private List<Amigo> meusAmigos;
     private Timeline tlAtualizaAmigos;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        tiRoot = new TreeItem("Lista de Amizades");
         tiAmigos = new TreeItem("Amigos");
         tiPendentes = new TreeItem("Pendencias de Amizade");
-        tvAmigos.setRoot(new TreeItem("Lista de Amizades"));
-        tvAmigos.getRoot().getChildren().add(tiAmigos);
-        tvAmigos.getRoot().getChildren().add(tiPendentes);
+        tvAmigos.setRoot(tiRoot);
+        tiRoot.getChildren().add(tiAmigos);
+        tiRoot.getChildren().add(tiPendentes);
+        tiRoot.setExpanded(true);
         btAddAmigos.setOnAction((event) -> {
             Stage tela = GerenciadorDeJanelas.abrirJanela(GerenciadorDeJanelas.carregarComponente("BuscarNovoAmigo"), "Encontre seu Amigo !!", GerenciadorDeJanelas.Tipo.UNDECORATED, GerenciadorDeJanelas.Tipo.UNRESIZABLE);
             tela.initModality(Modality.WINDOW_MODAL);
@@ -139,18 +141,16 @@ public class PainelAmigosController implements Initializable {
         });
     }
 
-    public void limpar() {
-
-    }
-
     public void atualizar() {
-        final List<Usuario> amigosPedentesBanco = new AmigoDAO().buscarAmigosPendentes(Sessao.usuario.get()).stream().map((Amigo t) -> {
+        //Lista de amigos pendentes na base de dados
+        final List<Usuario> amigosPendentesBanco = new AmigoDAO().buscarAmigosPendentes(Sessao.usuario.get()).stream().map((Amigo t) -> {
             if (t.getId().getConvidado().equals(Sessao.usuario.get())) {
                 return t.getId().getRemetente();
             } else {
                 return t.getId().getConvidado();
             }
         }).collect(Collectors.toList());
+        //Lista de amigos adicionados atualizada com a base de dados
         final List<Usuario> amigosAdicionadosBanco = new AmigoDAO().buscarAmigosAceitos(Sessao.usuario.get()).stream().map((Amigo t) -> {
             if (t.getId().getConvidado().equals(Sessao.usuario.get())) {
                 return t.getId().getRemetente();
@@ -158,18 +158,23 @@ public class PainelAmigosController implements Initializable {
                 return t.getId().getConvidado();
             }
         }).collect(Collectors.toList());
-        final List<Usuario> amigosAdicionados = (List<Usuario>) tiAmigos.getChildren().stream().map(new Function<Object, Usuario>() {
-            @Override
-            public Usuario apply(Object t) {
-                return (Usuario) ((TreeItem) t).getValue();
+        //Pegando todos usuarios ja no treeview
+        final List<Usuario> amigosAdicionados = (List<Usuario>) tiAmigos.getChildren().stream().map((Object t) -> (Usuario) ((TreeItem) t).getValue()).collect(Collectors.toList());
+        //Atualizanndo online
+        for (Usuario usuario : amigosAdicionados) {
+            if (amigosAdicionadosBanco.contains(usuario)) {
+                Usuario usuarioBanco = amigosAdicionadosBanco.get(amigosAdicionadosBanco.indexOf(usuario));
+                if (usuarioBanco.isOnline() != usuario.isOnline()) {
+                    for (TreeItem<Object> treeItem : tiAmigos.getChildren()) {
+                        if (treeItem.getValue().equals(usuario)) {
+                            treeItem.setValue(usuarioBanco);
+                        }
+                    }
+                }
             }
-        }).collect(Collectors.toList());
-        final List<Usuario> amigosPendentes = (List<Usuario>) tiPendentes.getChildren().stream().map(new Function<Object, Usuario>() {
-            @Override
-            public Usuario apply(Object t) {
-                return (Usuario) ((TreeItem) t).getValue();
-            }
-        }).collect(Collectors.toList());
+        }
+        //Pegando todos os amigos pendentes que já estão na telas
+        final List<Usuario> amigosPendentes = (List<Usuario>) tiPendentes.getChildren().stream().map((Object t) -> (Usuario) ((TreeItem) t).getValue()).collect(Collectors.toList());
         //Remover
         tiAmigos.getChildren().removeIf((Object t) -> {
             TreeItem treeItem = (TreeItem) t;
@@ -177,15 +182,15 @@ public class PainelAmigosController implements Initializable {
         });
         tiPendentes.getChildren().removeIf((Object t) -> {
             TreeItem treeItem = (TreeItem) t;
-            return !amigosPedentesBanco.contains(treeItem.getValue());
+            return !amigosPendentesBanco.contains(treeItem.getValue());
         });
         //Adicionar novos
-        amigosPedentesBanco.removeAll(amigosPendentes);
+        amigosPendentesBanco.removeAll(amigosPendentes);
         amigosAdicionadosBanco.removeAll(amigosAdicionados);
         for (Usuario usuario : amigosAdicionadosBanco) {
             adicionar(usuario, tiAmigos);
         }
-        for (Usuario usuario : amigosPedentesBanco) {
+        for (Usuario usuario : amigosPendentesBanco) {
             adicionar(usuario, tiPendentes);
         }
     }
